@@ -1,26 +1,6 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
-
 export default function ContactSection() {
-  const [subject, setSubject] = useState("");
-  const [isOpen, setIsOpen] = useState(false);
-  const dropdownRef = useRef<HTMLDivElement>(null);
-
-  const options = ["Product Enquiry", "Price Quote", "Bulk Order", "Delivery", "Project Requirements", "Partnership", "General Inquiry", "Other"];
-
-  useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-        setIsOpen(false);
-      }
-    }
-
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, []);
 
   return (
     <section className="w-full bg-white px-4  sm:px-6 lg:px-[5vw] py-14 md:py-16">
@@ -178,50 +158,11 @@ export default function ContactSection() {
                 <span className="mb-2 block text-sm tracking-[0.01em] font-medium text-[#333333]">
                   Subject
                 </span>
-                <div className="relative" ref={dropdownRef}>
-                  <button
-                    type="button"
-                    onClick={() => setIsOpen(!isOpen)}
-                    className="w-full rounded-xl border border-[#000000]/20 bg-white px-4 py-3 text-sm tracking-[0.01em] text-[#333333] transition-colors focus:border-[#E46231] focus:outline-none flex items-center justify-between"
-                  >
-                    <span className={subject ? "text-neutral-900" : "text-neutral-400"}>
-                      {subject || "Select a topic..."}
-                    </span>
-                    <svg
-                      className={`h-4 w-4 transition-transform ${isOpen ? "rotate-180" : ""}`}
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M19 9l-7 7-7-7"
-                      />
-                    </svg>
-                  </button>
-
-                  {isOpen && (
-                    <div className="absolute z-10 mt-2 w-full rounded-xl border border-[#000000]/20 bg-white shadow-lg">
-                      <div className="max-h-60 overflow-y-auto py-1">
-                        {options.map((option) => (
-                          <button
-                            key={option}
-                            type="button"
-                            onClick={() => {
-                              setSubject(option);
-                              setIsOpen(false);
-                            }}
-                            className="w-full px-4 py-3 text-left text-sm tracking-[0.01em] text-[#333333] transition-colors hover:bg-[#E46231]/20 hover:text-[#333333] focus:bg-[#E46231]/20 focus:text-[#333333] focus:outline-none"
-                          >
-                            {option}
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-                </div>
+                <input
+                  placeholder="Enter subject..."
+                  className="w-full rounded-xl border border-[#000000]/20 px-4 py-3 text-sm tracking-[0.01em] text-[#333333] transition-colors placeholder:text-neutral-400 focus:border-[#E46231] focus:outline-none"
+                  type="text"
+                />
               </label>
             </div>
 

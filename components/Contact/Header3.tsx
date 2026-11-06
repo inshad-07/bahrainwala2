@@ -33,6 +33,21 @@ export default function Header3() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isMobileMenuOpen]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
   return (
     <header className={`sticky top-0 z-50 w-full font-sans transition-colors duration-300 ${
       isTransparent ? 'bg-transparent' : 'bg-white shadow'
@@ -121,18 +136,20 @@ export default function Header3() {
               </nav>
 
               {/* Mobile Menu Button */}
-              <button
-                type="button"
-                onClick={() => setIsMobileMenuOpen(true)}
-                className={`lg:hidden p-2 rounded-lg transition-colors ${
-                  isTransparent ? 'text-white hover:bg-white/10' : 'text-[#1a1a1a] hover:bg-gray-100'
-                }`}
-                aria-label="Open menu"
-              >
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
-              </button>
+              {!isMobileMenuOpen && (
+                <button
+                  type="button"
+                  onClick={() => setIsMobileMenuOpen(true)}
+                  className={`lg:hidden p-2 rounded-lg transition-colors ${
+                    isTransparent ? 'text-white hover:bg-white/10' : 'text-[#1a1a1a] hover:bg-gray-100'
+                  }`}
+                  aria-label="Open menu"
+                >
+                  <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M4 6h16M4 12h16M4 18h16" />
+                  </svg>
+                </button>
+              )}
 
               {/* Enquiry Form Button */}
               <button
@@ -173,10 +190,10 @@ export default function Header3() {
         >
           <div className="flex flex-col h-full">
             {/* Sidebar Header */}
-            <div className="flex items-center justify-between px-6 py-2 border-b border-gray-200">
+            <div className="flex items-center justify-between px-6 py-2 border-b border-gray-200 shrink-0">
               <Image
                 src="/logo/main-logo.png"
-                alt="Bahrainwala Building Materials Trading CO LLC"
+                alt="Bahrainwala"
                 width={200}
                 height={90}
                 className="h-12 w-auto"
@@ -184,83 +201,86 @@ export default function Header3() {
               <button
                 type="button"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="p-2 rounded-lg hover:bg-gray-100 transition-colors text-[#1a1a1a]"
+                className="p-1.5 rounded-lg hover:bg-gray-100 transition-colors text-[#1a1a1a]"
                 aria-label="Close menu"
               >
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M6 18L18 6M6 6l12 12" />
                 </svg>
               </button>
             </div>
 
-            {/* Navigation Links */}
-            <nav className="flex-1 overflow-y-auto py-4">
-              {navLinks.map(({ href, label }) => {
-                const isActive = pathname === href;
-                return (
-                  <Link
-                    key={href}
-                    href={href}
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    className={`block px-6 py-4 text-base font-medium uppercase tracking-[0.02em] transition-colors border-l-4 ${
-                      isActive
-                        ? 'text-[#E46231] border-[#E46231] bg-orange-50'
-                        : 'text-[#1a1a1a] border-transparent hover:text-[#E46231] hover:border-[#E46231] hover:bg-gray-50'
-                    }`}
-                  >
-                    {label}
-                  </Link>
-                );
-              })}
-            </nav>
+            {/* Scrollable Content - Navigation Links, Contact Info, Social Icons */}
+            <div className="flex-1 overflow-y-auto">
+              {/* Navigation Links */}
+              <nav className="py-3">
+                {navLinks.map(({ href, label }) => {
+                  const isActive = pathname === href;
+                  return (
+                    <Link
+                      key={href}
+                      href={href}
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className={`block px-5 py-3 text-sm font-medium uppercase tracking-[0.02em] transition-colors ${
+                        isActive
+                          ? 'text-[#E46231] bg-gray-50'
+                          : 'text-[#1a1a1a] hover:text-[#E46231] hover:bg-gray-50'
+                      }`}
+                    >
+                      {label}
+                    </Link>
+                  );
+                })}
+              </nav>
 
-            {/* Contact Info */}
-            <div className="px-6 py-4 border-t border-gray-200">
-              <p className="text-sm font-medium text-[#1a1a1a] mb-3 uppercase tracking-[0.02em]">Contact Us</p>
-              <div className="space-y-3">
-                <a href="tel:+97142250300" className="flex items-center gap-3 text-sm text-[#1a1a1a] hover:text-[#E46231] transition-colors">
-                  <svg className="w-5 h-5 text-[#E46231]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                  </svg>
-                  <span>+971 4 2250300</span>
-                </a>
-                <a href="mailto:sales.bahrainwala@gmail.com" className="flex items-center gap-3 text-sm text-[#1a1a1a] hover:text-[#E46231] transition-colors">
-                  <svg className="w-5 h-5 text-[#E46231]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                  </svg>
-                  <span>sales.bahrainwala@gmail.com</span>
-                </a>
+              {/* Contact Info */}
+              <div className="px-5 py-3 border-t border-gray-200">
+                <p className="text-xs font-semibold text-[#1a1a1a] mb-2 uppercase tracking-[0.02em]">Contact</p>
+                <div className="space-y-2">
+                  <a href="tel:+97142250300" className="flex items-center gap-2.5 text-xs text-[#1a1a1a] hover:text-[#E46231] transition-colors">
+                    <svg className="w-4 h-4 text-[#E46231]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                    </svg>
+                    <span>+971 4 2250300</span>
+                  </a>
+                  <a href="mailto:sales.bahrainwala@gmail.com" className="flex items-center gap-2.5 text-xs text-[#1a1a1a] hover:text-[#E46231] transition-colors">
+                    <svg className="w-4 h-4 text-[#E46231]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                    <span>sales.bahrainwala@gmail.com</span>
+                  </a>
+                </div>
+              </div>
+
+              {/* Social Media Icons */}
+              <div className="px-5 py-3 border-t border-gray-200">
+                <p className="text-xs font-semibold text-[#1a1a1a] mb-2 uppercase tracking-[0.02em]">Follow</p>
+                <div className="flex items-center gap-3">
+                  <a href="#" aria-label="Facebook" className="p-2 border rounded-full hover:border-[#E46231] hover:text-[#E46231] transition-colors border-gray-300 text-[#1a1a1a]">
+                    <FaFacebookF className="w-4 h-4" />
+                  </a>
+                  <a href="#" aria-label="Instagram" className="p-2 border rounded-full hover:border-[#E46231] hover:text-[#E46231] transition-colors border-gray-300 text-[#1a1a1a]">
+                    <FaInstagram className="w-4 h-4" />
+                  </a>
+                  <a href="#" aria-label="LinkedIn" className="p-2 border rounded-full hover:border-[#E46231] hover:text-[#E46231] transition-colors border-gray-300 text-[#1a1a1a]">
+                    <FaLinkedinIn className="w-4 h-4" />
+                  </a>
+                  <a href="#" aria-label="YouTube" className="p-2 border rounded-full hover:border-[#E46231] hover:text-[#E46231] transition-colors border-gray-300 text-[#1a1a1a]">
+                    <FaYoutube className="w-4 h-4" />
+                  </a>
+                </div>
               </div>
             </div>
 
-            {/* Social Media Icons */}
-            <div className="px-6 py-4 border-t border-gray-200">
-              <p className="text-sm font-medium text-[#1a1a1a] mb-3 uppercase tracking-[0.02em]">Follow Us</p>
-              <div className="flex items-center gap-4">
-                <a href="#" aria-label="Facebook" className="p-2.5 border rounded-full hover:border-[#E46231] hover:text-[#E46231] transition-colors border-gray-300 text-[#1a1a1a]">
-                  <FaFacebookF className="w-5 h-5" />
-                </a>
-                <a href="#" aria-label="Instagram" className="p-2.5 border rounded-full hover:border-[#E46231] hover:text-[#E46231] transition-colors border-gray-300 text-[#1a1a1a]">
-                  <FaInstagram className="w-5 h-5" />
-                </a>
-                <a href="#" aria-label="LinkedIn" className="p-2.5 border rounded-full hover:border-[#E46231] hover:text-[#E46231] transition-colors border-gray-300 text-[#1a1a1a]">
-                  <FaLinkedinIn className="w-5 h-5" />
-                </a>
-                <a href="#" aria-label="YouTube" className="p-2.5 border rounded-full hover:border-[#E46231] hover:text-[#E46231] transition-colors border-gray-300 text-[#1a1a1a]">
-                  <FaYoutube className="w-5 h-5" />
-                </a>
-              </div>
-            </div>
-
-            {/* Sidebar Footer - Enquiry Form Button */}
-            <div className="p-4 border-t border-gray-200">
+            {/* Sidebar Footer - Enquiry Form Button (Fixed at bottom) */}
+            <div className="p-4 border-t border-gray-200 shrink-0">
               <button
                 type="button"
                 onClick={() => {
                   setIsEnquiryOpen(true);
                   setIsMobileMenuOpen(false);
                 }}
-                className="w-full px-5 py-3 rounded bg-[#E46231] text-white text-sm font-medium tracking-[0.01em] hover:bg-[#d3541f] transition-colors"
+                className="w-full px-5 py-2.5 rounded bg-[#E46231] text-white text-xs font-semibold tracking-[0.01em] hover:bg-[#d3541f] transition-colors"
               >
                 Enquiry Form
               </button>

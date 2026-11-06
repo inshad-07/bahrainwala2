@@ -5,6 +5,8 @@ import Header from "@/components/Header";
 import Header2 from "@/components/Contact/Header2";
 import Footer from "@/components/Footer";
 import Header3 from "@/components/Contact/Header3";
+import WhatsAppFloatingButton from "@/components/WhatsAppFloatingButton";
+import GoogleTranslateFloatingButton from "@/components/GoogleTranslateFloatingButton";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -24,21 +26,31 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Bahrainwala",
   description: "Bahrainwala website",
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon-96x96.png",
+    apple: "/apple-touch-icon.png",
+  },
+  manifest: "/manifest.json",
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html
       lang="en"
       className={`${inter.variable} ${outfit.variable} ${geistMono.variable} h-full antialiased`}
     >
+      <head>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@6.6.6/css/flag-icons.min.css" />
+      </head>
       <body className="min-h-full flex flex-col">
         {/* <Header/> */}
         {/* <Header2/> */}
         <Header3/>
         {children}
         <Footer/>
-        
+        <WhatsAppFloatingButton/>
+        <GoogleTranslateFloatingButton/>
         </body>
     </html>
   );

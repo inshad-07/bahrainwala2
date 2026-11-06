@@ -14,7 +14,7 @@ const brands = [
 export default function BrandSection() {
   return (
     <section className="py-14 md:py-16 bg-white">
-      <div className="templateContainer">
+      <div className="templateContainer px-2 sm:px-0">
         <div className="mb-8 sm:mb-12 text-center">
         
           <h1 className="mt-2 sm:mt-3 text-[26px] sm:text-[32px] md:text-[40px] font-light leading-none tracking-[-0.010em] text-[#333333]">
@@ -27,18 +27,18 @@ export default function BrandSection() {
           </p>
         </div>
 
-        <div className="flex flex-wrap justify-center gap-3 sm:gap-4">
+        <div className="flex flex-wrap justify-center gap-2 sm:gap-4">
           {brands.map((brand) => (
             <div
               key={brand.src}
-              className="flex h-15 sm:h-18 md:h-22 w-30 sm:w-35 md:w-50 items-center justify-center overflow-hidden rounded-md border border-[#E5E0D8] bg-white px-2 sm:px-3 hover:border-[#E46231] transition-colors"
+              className="flex h-16 sm:h-18 md:h-22 w-40 sm:w-40 md:w-50 items-center justify-center overflow-hidden rounded-md border border-[#E5E0D8] bg-white px-3 sm:px-3 hover:border-[#E46231] transition-colors"
             >
               <Image
                 src={brand.src}
                 alt={brand.alt}
-                width={120}
-                height={48}
-                className="h-auto max-h-12.5 sm:max-h-15 md:max-h-17.5 max-w-full w-auto object-contain"
+                width={160}
+                height={64}
+                className="h-auto max-h-14 sm:max-h-15 md:max-h-17.5 max-w-full w-auto object-contain"
                 unoptimized
               />
             </div>

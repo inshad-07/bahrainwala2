@@ -1,6 +1,7 @@
 export default function FeaturesSection() {
   return (
-    <section className="pb-14 md:pb-16 font-sans">
+    // <section className="pb-14 md:pb-16 font-sans">
+    <section className="py-10 md:pt-10 md:pb-6 font-sans">
       <div className="templateContainer">
         
         {/* Header Section */}

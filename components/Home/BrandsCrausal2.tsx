@@ -164,7 +164,8 @@ export default function BrandsCrausal2() {
   ].filter((row) => row.length > 0);
 
   return (
-    <section className="pb-14 md:pb-16">
+    // <section className="pb-14 md:pb-16">
+    <section className="py-10 md:py-10">
       <div className="templateContainer">
         {/* Heading */}
         <div className="mb-6 sm:mb-10">

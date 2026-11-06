@@ -45,14 +45,18 @@ export default function OverviewSection() {
           </div>
 
           {/* Download Button */}
-          <button className="group flex items-center w-fit text-[#f97316] tracking-widest uppercase text-xs md:text-sm hover:opacity-80 transition-opacity">
+          <a
+            href="/BAHRAINWALA-CATALOGE.pdf"
+            download
+            className="group flex items-center w-fit text-[#f97316] tracking-widest uppercase text-xs md:text-sm hover:opacity-80 transition-opacity"
+          >
             <span className="mr-4">Download Brochure</span>
             <span className="w-10 h-10 rounded-full border border-[#f97316] flex items-center justify-center group-hover:bg-[#f97316] group-hover:text-white transition-colors">
               <svg className="w-4 h-4 text-[#f97316] group-hover:text-white transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
             </span>
-          </button>
+          </a>
         </div>
 
         {/* Right Content - Image Collage */}

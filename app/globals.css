@@ -60,6 +60,98 @@ body {
   }
 }
 
+@keyframes ping {
+  75%, 100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+.animate-ping {
+  animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
 .templateContainer {
   @apply max-w-[1600px] mx-auto w-full px-4 md:px-12;
+}
+
+/* Hide Google Translate default UI */
+body > .skiptranslate,
+body > .goog-te-banner-frame {
+  display: none !important;
+}
+
+.skiptranslate {
+  display: none !important;
+}
+
+#google_translate_element {
+  display: none;
+}
+
+#google_translate_element_mount {
+  position: absolute !important;
+  visibility: hidden !important;
+  width: 0 !important;
+  height: 0 !important;
+  overflow: hidden !important;
+  pointer-events: none !important;
+}
+
+.goog-te-spinner-pos,
+.goog-te-spinner-animation {
+  display: none !important;
+}
+
+.VIpgJd-ZVi9od-xl07Ob-lTBxed,
+.VIpgJd-ZVi9od-xl07Ob-OEVmcd {
+  display: none !important;
+}
+
+/* Hide all Google Translate loading spinners */
+.goog-te-spinner,
+.goog-te-spinner * {
+  display: none !important;
+  visibility: hidden !important;
+}
+
+.goog-te-gadget {
+  display: none !important;
+}
+
+.goog-te-combo {
+  display: none !important;
+}
+
+/* Hide Google Translate loading bar */
+.goog-te-balloon-frame,
+.goog-te-balloon {
+  display: none !important;
+}
+
+/* Hide any Google Translate loading elements */
+[style*="width: 100%"] .goog-te-spinner,
+[style*="position: absolute"] .goog-te-spinner {
+  display: none !important;
+}
+
+/* Hide Google Translate iframe completely */
+iframe[src*="translate.google.com"],
+iframe[src*="translate.googleusercontent.com"] {
+  display: none !important;
+  visibility: hidden !important;
+}
+
+/* Hide Google Translate progress bar */
+.goog-te-progress {
+  display: none !important;
+}
+
+/* Hide any loading bars from Google Translate */
+[class*="goog-te"] {
+  opacity: 0 !important;
+}
+
+.notranslate [class*="goog-te"] {
+  opacity: 1 !important;
 }

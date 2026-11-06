@@ -10,23 +10,24 @@ const Footer = () => {
       {/* Top Downloads Section */}
       <div className="bg-[#1a1a1a] w-full border-b border-gray-800">
         <div className="templateContainer py-6 relative flex flex-col md:flex-row items-center justify-between">
-          <div className="mb-4 md:mb-0 z-10">
-            <h3 className="text-sm font-normal tracking-[0.04em] mb-1 uppercase">Downloads</h3>
+          <div className="z-10 order-1 md:order-0 mb-4 md:mb-0 w-full md:w-auto">
+            <h3 className="text-sm font-normal tracking-[0.04em] mb-1 uppercase">Download</h3>
             <h2 className="text-2xl md:text-3xl font-light tracking-[-0.01em]">Bahrainwala Building Materials Trading CO LLC</h2>
           </div>
 
           {/* Catalog Image - Positioned absolutely for the overlap effect seen in the design */}
-          <div className="hidden md:block absolute right-52 -top-4 z-0">
+          <div className="absolute right-4 md:right-52 top-32 md:-top-4 z-0">
             <img
               src="/about/6517790d-f812-4330-b945-3615f6a858d0.webp"
               alt="Catalog Brochure"
-              className="h-32 object-contain rotate-12 drop-shadow-xl"
+              className="h-24 md:h-32 object-contain rotate-12 drop-shadow-xl"
             />
           </div>
 
-          <div className="z-10">
+          <div className="z-10 order-3 md:order-0 mt-4 md:mt-0 w-full md:w-auto">
             <a
-              href="#"
+              href="/BAHRAINWALA-CATALOGE.pdf"
+              download
               className="inline-flex items-center gap-2 bg-white text-[#2d2d2d] px-6 py-2.5 rounded-full text-sm font-normal tracking-[0.01em] hover:bg-gray-100 transition-colors"
             >
               <span>Download</span>
@@ -68,6 +69,8 @@ const Footer = () => {
                 <li><Link href="/products" className="text-gray-300 text-sm tracking-[0.01em] hover:text-white transition-colors">Products</Link></li>
                 <li><Link href="/brands" className="text-gray-300 text-sm tracking-[0.01em] hover:text-white transition-colors">Brands</Link></li>
                 <li><Link href="/contact" className="text-gray-300 text-sm tracking-[0.01em] hover:text-white transition-colors">Contact Us</Link></li>
+                <li><Link href="/privacy" className="text-gray-300 text-sm tracking-[0.01em] hover:text-white transition-colors">Privacy Policy</Link></li>
+                <li><Link href="/terms" className="text-gray-300 text-sm tracking-[0.01em] hover:text-white transition-colors">Terms & Conditions</Link></li>
               </ul>
             </div>
 

@@ -3,7 +3,8 @@ import Link from 'next/link';
 
 export default function AboutSection() {
   return (
-    <section className="py-16 md:py-20">
+    // <section className="py-14 md:py-16">
+    <section className="py-10 md:pt-10 md:pb-6">
       <div className="templateContainer grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
 
         {/* Image Column - 3 part collage */}
@@ -70,7 +71,7 @@ export default function AboutSection() {
             {/* Stat 1 */}
             <div className="flex flex-col">
               <div className="text-4xl sm:text-5xl font-normal text-[#333333] flex items-start tracking-[-0.010em]">
-                500<span className="text-[#E46231] text-2xl sm:text-3xl ml-1">+</span>
+                500<span className="text-[#E46231] text-xl sm:text-3xl ml-1">+</span>
               </div>
               <div className="text-xs sm:text-sm text-gray-600 mt-2 uppercase tracking-[0.08em]">
                 Products & Supplies
@@ -80,7 +81,7 @@ export default function AboutSection() {
             {/* Stat 2 */}
             <div className="flex flex-col">
               <div className="text-4xl sm:text-5xl font-normal text-[#333333] flex items-start tracking-[-0.010em]">
-                25<span className="text-[#E46231] text-2xl sm:text-3xl ml-1">+</span>
+                25<span className="text-[#E46231] text-xl sm:text-3xl ml-1">+</span>
               </div>
               <div className="text-xs sm:text-sm text-gray-600 mt-2 uppercase tracking-[0.08em]">
                 Trusted Brands
@@ -90,7 +91,7 @@ export default function AboutSection() {
             {/* Stat 3 */}
             <div className="flex flex-col">
               <div className="text-4xl sm:text-5xl font-normal text-[#333333] flex items-start tracking-[-0.010em]">
-                11<span className="text-[#E46231] text-2xl sm:text-3xl ml-1">+</span>
+                11<span className="text-[#E46231] text-xl sm:text-3xl ml-1">+</span>
               </div>
               <div className="text-xs sm:text-sm text-gray-600 mt-2 uppercase tracking-[0.08em]">
                 Export Markets
