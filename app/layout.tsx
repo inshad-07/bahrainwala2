@@ -43,11 +43,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@6.6.6/css/flag-icons.min.css" />
       </head>
-      <body className="min-h-full flex flex-col">
+      <body className="min-h-full">
         {/* <Header/> */}
         {/* <Header2/> */}
         <Header3/>
-        {children}
+        <div className="pt-24">
+          {children}
+        </div>
         <Footer/>
         <WhatsAppFloatingButton/>
         <GoogleTranslateFloatingButton/>

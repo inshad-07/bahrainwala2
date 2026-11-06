@@ -3,6 +3,8 @@
 import React, { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { categories } from '@/lib/data';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 interface Product {
   name: string;
@@ -17,6 +19,14 @@ function ProductsContent() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
+
+  useEffect(() => {
+    AOS.init({
+      duration: 600,
+      once: true,
+      disable: 'mobile',
+    });
+  }, []);
 
   useEffect(() => {
     function handleEscape(event: KeyboardEvent) {
@@ -60,7 +70,7 @@ function ProductsContent() {
   return (
     <section className="py-14 md:py-16 bg-white font-sans">
       <div className="templateContainer">
-        <div className="mb-8 sm:mb-12 text-center">
+        <div className="mb-8 sm:mb-12 text-center" data-aos="fade-up">
           <h1 className="mt-2 sm:mt-3 text-[26px] sm:text-[32px] md:text-[40px] font-light leading-none tracking-[-0.010em] text-[#333333]">
             All Products
           </h1>
@@ -70,7 +80,7 @@ function ProductsContent() {
         </div>
 
         {/* Filter */}
-        <div className="mb-8 flex justify-center">
+        <div className="mb-8 flex justify-center" data-aos="fade-up" data-aos-delay="0">
           {/* Mobile: Filter Button */}
           <div className="relative sm:hidden w-full">
             <button
@@ -144,6 +154,8 @@ function ProductsContent() {
               <div
                 key={index}
                 className="bg-white rounded-2xl shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-300"
+                data-aos="fade-up"
+                data-aos-delay={200 + index * 50}
               >
                 <div className="relative aspect-3/4 overflow-hidden p-2">
                   <img

@@ -1,4 +1,9 @@
+'use client';
+
 import Image from "next/image";
+import { useEffect } from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const brands = [
   { src: "/brand/10001.png", alt: "Brand 1" },
@@ -12,11 +17,19 @@ const brands = [
 ];
 
 export default function BrandSection() {
+  useEffect(() => {
+    AOS.init({
+      duration: 600,
+      once: true,
+      disable: 'mobile',
+    });
+  }, []);
+
   return (
     <section className="py-14 md:py-16 bg-white">
       <div className="templateContainer px-2 sm:px-0">
-        <div className="mb-8 sm:mb-12 text-center">
-        
+        <div className="mb-8 sm:mb-12 text-center" data-aos="fade-up">
+
           <h1 className="mt-2 sm:mt-3 text-[26px] sm:text-[32px] md:text-[40px] font-light leading-none tracking-[-0.010em] text-[#333333]">
             Brands We Deal With
           </h1>
@@ -28,10 +41,12 @@ export default function BrandSection() {
         </div>
 
         <div className="flex flex-wrap justify-center gap-2 sm:gap-4">
-          {brands.map((brand) => (
+          {brands.map((brand, index) => (
             <div
               key={brand.src}
               className="flex h-16 sm:h-18 md:h-22 w-40 sm:w-40 md:w-50 items-center justify-center overflow-hidden rounded-md border border-[#E5E0D8] bg-white px-3 sm:px-3 hover:border-[#E46231] transition-colors"
+              data-aos="fade-up"
+              data-aos-delay={index * 50}
             >
               <Image
                 src={brand.src}

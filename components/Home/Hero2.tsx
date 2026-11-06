@@ -18,13 +18,12 @@ export default function Hero2() {
       <div className="absolute top-50 lg:top-48 left-0 w-full">
         <div className="templateContainer">
           <div className="py-4 lg:py-12">
-           
-            <h1 className="text-2xl lg:text-6xl font-light text-left leading-tight tracking-tight text-white drop-shadow-2xl">
+            <h1 className="text-[26px] lg:text-6xl font-light text-left leading-tight tracking-tight text-white drop-shadow-2xl animate-fade-up">
               Premium Building Materials.
               <br />
               Trusted Quality Since Years.
             </h1>
-             <div className="w-16 h-1 bg-orange-500 mt-4"></div>
+             <div className="w-16 h-1 bg-orange-500 mt-4 animate-fade-up-delay-300"></div>
           </div>
         </div>
       </div>

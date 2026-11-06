@@ -1,13 +1,24 @@
 'use client';
 
+import { useEffect } from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
 export default function ContactSection() {
+  useEffect(() => {
+    AOS.init({
+      duration: 600,
+      once: true,
+      disable: 'mobile',
+    });
+  }, []);
 
   return (
     <section className="w-full bg-white px-4  sm:px-6 lg:px-[5vw] py-14 md:py-16">
       <div className="mx-auto grid max-w-[1340px] gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16 items-start">
-        
+
         {/* Left Column: Heading, Info & Call Box */}
-        <div>
+        <div data-aos="fade-up">
           <p className="text-[10px] sm:text-xs font-medium uppercase leading-5 tracking-[0.18em] text-[#333333]">
             Get In Touch
           </p>
@@ -21,7 +32,7 @@ export default function ContactSection() {
 
           {/* Email Card */}
           <ul className="mt-8 space-y-4">
-            <li>
+            <li data-aos="fade-up" data-aos-delay="100">
               <div className="flex items-center gap-4 rounded-2xl border border-[#000000]/20 bg-white p-4">
                 <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-gray-100 text-[#333333]">
                   <svg
@@ -50,7 +61,7 @@ export default function ContactSection() {
                 </div>
               </div>
             </li>
-            <li>
+            <li data-aos="fade-up" data-aos-delay="200">
               <div className="flex items-center gap-4 rounded-2xl border border-[#000000]/20 bg-white p-4">
                 <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-gray-100 text-[#333333]">
                   <svg
@@ -78,7 +89,7 @@ export default function ContactSection() {
                 </div>
               </div>
             </li>
-            <li>
+            <li data-aos="fade-up" data-aos-delay="300">
               <div className="flex items-center gap-4 rounded-2xl border border-[#000000]/20 bg-white p-4">
                 <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-gray-100 text-[#333333]">
                   <svg
@@ -108,10 +119,10 @@ export default function ContactSection() {
         </div>
 
         {/* Right Column: Form */}
-        <div>
+        <div data-aos="fade-up" data-aos-delay="400">
           <form className="rounded-3xl border border-neutral-200 bg-white p-6 shadow-sm sm:p-8">
             <div className="grid gap-4 sm:grid-cols-2">
-              
+
               {/* Full Name */}
               <label className="block">
                 <span className="mb-2 block text-sm tracking-[0.01em] font-medium text-[#333333]">

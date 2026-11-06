@@ -22,6 +22,7 @@ html {
 body {
   background: #ffffff;
   color: var(--foreground);
+  overflow-x: hidden;
 }
 
 .font-description {
@@ -69,6 +70,27 @@ body {
 
 .animate-ping {
   animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-up {
+  animation: fadeUp 0.6s ease-out forwards;
+  opacity: 0;
+}
+
+.animate-fade-up-delay-300 {
+  animation: fadeUp 0.6s ease-out 0.3s forwards;
+  opacity: 0;
 }
 
 .templateContainer {
@@ -154,4 +176,43 @@ iframe[src*="translate.googleusercontent.com"] {
 
 .notranslate [class*="goog-te"] {
   opacity: 1 !important;
+}
+
+/* AOS Animation Fixes */
+[data-aos] {
+  pointer-events: auto !important;
+}
+
+[data-aos][data-aos][data-aos-duration="400"],
+body[data-aos-duration="400"] [data-aos] {
+  transition-duration: 400ms;
+}
+
+[data-aos][data-aos][data-aos-delay="400"],
+body[data-aos-delay="400"] [data-aos] {
+  transition-delay: 0s;
+}
+
+/* Prevent overflow during AOS animations */
+html {
+  overflow-x: hidden;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+/* Ensure sticky positioning works correctly */
+html {
+  overflow-x: hidden;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+/* Fix for sticky with negative margins */
+.sticky {
+  position: sticky !important;
+  top: 0 !important;
 }

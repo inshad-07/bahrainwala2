@@ -4,6 +4,8 @@ import { useState, useEffect, useRef } from "react";
 import { categories } from "@/lib/data";
 import Link from "next/link";
 import ProductEnquiryModal from "@/components/Products/ProductEnquiryModal";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 interface Product {
   name: string;
@@ -56,6 +58,15 @@ export default function ProductCarousel() {
   const [products, setProducts] = useState<Product[]>([]);
   const carouselRef = useRef<HTMLDivElement>(null);
 
+  // Initialize AOS
+  useEffect(() => {
+    AOS.init({
+      duration: 600,
+      once: true,
+      disable: 'mobile',
+    });
+  }, []);
+
   // Get all products from all categories
   useEffect(() => {
     const allProducts = categories.flatMap(cat =>
@@ -82,7 +93,7 @@ export default function ProductCarousel() {
     <section className="py-10 md:pt-10 md:pb-6 bg-white overflow-visible">
       <div className="templateContainer overflow-visible">
         {/* Heading */}
-        <div className="mb-6 sm:mb-10">
+        <div className="mb-6 sm:mb-10" data-aos="fade-up">
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4">
             <div>
               <p className="text-[10px] sm:text-xs font-normal uppercase leading-5 tracking-[0.18em] text-[#333333]">
@@ -162,7 +173,12 @@ export default function ProductCarousel() {
                 style={{ touchAction: 'pan-y' }}
               >
                 {products.map((product, index) => (
-                  <div key={index} className="shrink-0 w-full sm:w-[calc(50%-8px)] md:w-[calc(50%-8px)] lg:w-[calc(25%-12px)] snap-start">
+                  <div
+                    key={index}
+                    className="shrink-0 w-full sm:w-[calc(50%-8px)] md:w-[calc(50%-8px)] lg:w-[calc(25%-12px)] snap-start"
+                    data-aos="fade-up"
+                    data-aos-delay={index * 50}
+                  >
                     <ProductCard product={product} />
                   </div>
                 ))}

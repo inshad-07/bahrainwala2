@@ -26,7 +26,7 @@ export default function Header3() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 0);
+      setIsScrolled(window.scrollY > 50);
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -49,7 +49,7 @@ export default function Header3() {
   }, [pathname]);
 
   return (
-    <header className={`sticky top-0 z-50 w-full font-sans transition-colors duration-300 ${
+    <header className={`fixed top-0 left-0 right-0 z-50 w-full font-sans transition-colors duration-300 ${
       isTransparent ? 'bg-transparent' : 'bg-white shadow'
     }`}>
       <div className="templateContainer pb-2 sm:pb-2 py-2 sm:py-0">

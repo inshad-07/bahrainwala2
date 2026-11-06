@@ -7,12 +7,14 @@ import ProductCarousel from "@/components/Home/ProductCarousel";
 import ProductCategories from "@/components/Products/ProductCategories";
 import { categories } from "@/lib/data";
 import Hero2 from "@/components/Home/Hero2";
+// import Hero3 from "@/components/Home/Hero3";
 
 export default function Home() {
   return (
    <div>
     {/* <Hero/> */}
     <Hero2/>
+    {/* <Hero3/> */}
      <ProductCategories categories={categories} />
     <ProductCarousel/>
     <AboutSection/>

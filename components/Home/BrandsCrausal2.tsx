@@ -3,6 +3,8 @@
 import { useState, useEffect, useRef, type PointerEvent, type MouseEvent } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 interface Brand {
   slug: string;
@@ -124,6 +126,15 @@ export default function BrandsCrausal2() {
     draggedRef.current = false;
   };
 
+  // Initialize AOS
+  useEffect(() => {
+    AOS.init({
+      duration: 600,
+      once: true,
+      disable: 'mobile',
+    });
+  }, []);
+
   // Fetch brands from API
   useEffect(() => {
     const brandImages = [
@@ -171,19 +182,21 @@ export default function BrandsCrausal2() {
         <div className="mb-6 sm:mb-10">
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4">
             <div>
-              <p className="text-[10px] sm:text-xs font-normal uppercase leading-5 tracking-[0.18em] text-[#333333]">
+              <p className="text-[10px] sm:text-xs font-normal uppercase leading-5 tracking-[0.18em] text-[#333333]" data-aos="fade-up">
                 Our Partners
               </p>
-              <h2 className="mt-2 sm:mt-3 text-[26px] sm:text-[32px] md:text-[40px] font-light leading-none tracking-[-0.010em] text-[#333333]">
+              <h2 className="mt-2 sm:mt-3 text-[26px] sm:text-[32px] md:text-[40px] font-light leading-none tracking-[-0.010em] text-[#333333]" data-aos="fade-up" data-aos-delay="100">
                 Brands We Deal With
               </h2>
-              <p className="mt-2 sm:mt-3 max-w-md leading-[1.7] text-gray-600 text-[14px] tracking-[0.01em] sm:text-[16px]">
+              <p className="mt-2 sm:mt-3 max-w-md leading-[1.7] text-gray-600 text-[14px] tracking-[0.01em] sm:text-[16px]" data-aos="fade-up" data-aos-delay="200">
                 Authorized dealer of K-PRIX, COMET, MITUTOYO, INSIZE and more.
               </p>
             </div>
             <Link
               href="/brands"
               className="mt-4 sm:mt-0 inline-flex items-center gap-2 rounded-full border border-[#E46231] bg-transparent px-5 py-2.5 sm:px-7 sm:py-3 text-[10px] sm:text-xs font-normal uppercase tracking-[0.08em] text-[#E46231] transition hover:bg-[#E46231] hover:text-white shrink-0 w-auto justify-start sm:justify-center"
+              data-aos="fade-up"
+              data-aos-delay="300"
             >
               View All
               <svg

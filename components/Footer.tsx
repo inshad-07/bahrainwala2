@@ -1,22 +1,34 @@
-import React from 'react';
+'use client';
+
+import React, { useEffect } from 'react';
 import { Clock, Download, MapPin, Phone, Mail } from 'lucide-react';
 import { FaFacebookF, FaLinkedinIn, FaInstagram, FaYoutube } from 'react-icons/fa';
 import Link from 'next/link';
 import Image from 'next/image';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const Footer = () => {
+  useEffect(() => {
+    AOS.init({
+      duration: 800,
+      once: true,
+      offset: 50,
+    });
+  }, []);
+
   return (
     <footer className="w-full font-sans text-white">
       {/* Top Downloads Section */}
       <div className="bg-[#1a1a1a] w-full border-b border-gray-800">
         <div className="templateContainer py-6 relative flex flex-col md:flex-row items-center justify-between">
-          <div className="z-10 order-1 md:order-0 mb-4 md:mb-0 w-full md:w-auto">
+          <div className="z-10 order-1 md:order-0 mb-4 md:mb-0 w-full md:w-auto" data-aos="fade-up" data-aos-delay="100">
             <h3 className="text-sm font-normal tracking-[0.04em] mb-1 uppercase">Download</h3>
             <h2 className="text-2xl md:text-3xl font-light tracking-[-0.01em]">Bahrainwala Building Materials Trading CO LLC</h2>
           </div>
 
           {/* Catalog Image - Positioned absolutely for the overlap effect seen in the design */}
-          <div className="absolute right-4 md:right-52 top-32 md:-top-4 z-0">
+          <div className="absolute right-4 md:right-52 top-32 md:-top-4 z-0" data-aos="zoom-in" data-aos-delay="300">
             <img
               src="/about/6517790d-f812-4330-b945-3615f6a858d0.webp"
               alt="Catalog Brochure"
@@ -24,7 +36,7 @@ const Footer = () => {
             />
           </div>
 
-          <div className="z-10 order-3 md:order-0 mt-4 md:mt-0 w-full md:w-auto">
+          <div className="z-10 order-3 md:order-0 mt-4 md:mt-0 w-full md:w-auto" data-aos="fade-left" data-aos-delay="200">
             <a
               href="/BAHRAINWALA-CATALOGE.pdf"
               download
@@ -43,7 +55,7 @@ const Footer = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10">
 
             {/* Column 1: Company Info */}
-            <div className="lg:col-span-4 space-y-6">
+            <div className="lg:col-span-4 space-y-6" data-aos="fade-up" data-aos-delay="100">
               <Image
                 src="/logo/main-logo.png"
                 alt="Bahrainwala Building Materials Trading CO LLC"
@@ -61,7 +73,7 @@ const Footer = () => {
             </div>
 
             {/* Column 2: Company Links */}
-            <div className="lg:col-span-2 lg:ml-8">
+            <div className="lg:col-span-2 lg:ml-8" data-aos="fade-up" data-aos-delay="200">
               <h3 className="text-base font-normal mb-6 uppercase tracking-[0.04em]">Company</h3>
               <ul className="space-y-3">
                 <li><Link href="/" className="text-gray-300 text-sm tracking-[0.01em] hover:text-white transition-colors">Home</Link></li>
@@ -75,7 +87,7 @@ const Footer = () => {
             </div>
 
             {/* Column 3: Products Links */}
-            <div className="lg:col-span-3">
+            <div className="lg:col-span-3" data-aos="fade-up" data-aos-delay="300">
               <h3 className="text-base font-normal mb-6 uppercase tracking-[0.04em]">Products</h3>
               <ul className="space-y-3">
                 <li><Link href="/products" className="text-gray-300 text-sm tracking-[0.01em] hover:text-white transition-colors">Building Materials</Link></li>
@@ -87,7 +99,7 @@ const Footer = () => {
             </div>
 
             {/* Column 4: Contact & Social */}
-            <div className="lg:col-span-3">
+            <div className="lg:col-span-3" data-aos="fade-up" data-aos-delay="400">
               <h3 className="text-base font-normal mb-6 uppercase tracking-[0.04em]">Get in touch</h3>
               <ul className="space-y-4 mb-8">
                 <li className="flex items-start gap-3 text-gray-300 text-sm tracking-[0.01em]">

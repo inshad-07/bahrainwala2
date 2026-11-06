@@ -1,14 +1,26 @@
-import React from 'react';
+'use client';
+
+import React, { useEffect } from 'react';
 import Link from 'next/link';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 export default function AboutSection() {
+  useEffect(() => {
+    AOS.init({
+      duration: 600,
+      once: true,
+      disable: 'mobile',
+    });
+  }, []);
+
   return (
     // <section className="py-14 md:py-16">
     <section className="py-10 md:pt-10 md:pb-6">
       <div className="templateContainer grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
 
         {/* Image Column - 3 part collage */}
-        <div className="grid grid-cols-2 gap-2 w-full">
+        <div className="grid grid-cols-2 gap-2 w-full" data-aos="fade-up">
           {/* Left column - single tall image */}
           <div className="relative w-full h-full overflow-hidden">
             <img
@@ -39,13 +51,13 @@ export default function AboutSection() {
 
         {/* Content Column */}
         <div className="flex flex-col justify-center space-y-8">
-          
+
           {/* Heading & Paragraph */}
-          <div className="space-y-5">
+          <div className="space-y-5" data-aos="fade-up">
             <p className="text-[10px] sm:text-xs font-medium uppercase leading-5 tracking-[0.18em] text-[#E46231]">
               About Us
             </p>
-            
+
             <p className="text-[20px] sm:text-[24px] md:text-[28px] font-normal leading-[1.35] tracking-[-0.01em] text-gray-900">
               Bahrainwala Building Materials Trading CO LLC — your trusted partner for quality building materials, tools and industrial supplies across the UAE and beyond.
             </p>
@@ -55,7 +67,7 @@ export default function AboutSection() {
           </div>
 
           {/* Button */}
-          <div>
+          <div data-aos="fade-up" data-aos-delay="100">
             <Link href="/about" className="bg-[#333333] hover:bg-[#E46231] text-white rounded-full pl-6 pr-2 py-2 font-normal flex items-center gap-4 transition-colors w-fit">
               READ MORE
               <span className="bg-white text-[#333333] rounded-full p-1.5 flex items-center justify-center">
@@ -67,33 +79,33 @@ export default function AboutSection() {
           </div>
 
           {/* Stats Grid */}
-          <div className="grid grid-cols-3 gap-4 pt-8 border-t border-gray-200">
+          <div className="grid grid-cols-3 gap-4 pt-8 border-t border-gray-200" data-aos="fade-up" data-aos-delay="200">
             {/* Stat 1 */}
-            <div className="flex flex-col">
-              <div className="text-4xl sm:text-5xl font-normal text-[#333333] flex items-start tracking-[-0.010em]">
-                500<span className="text-[#E46231] text-xl sm:text-3xl ml-1">+</span>
+            <div className="flex flex-col items-center text-center">
+              <div className="text-2xl sm:text-3xl font-normal text-[#333333] flex items-center tracking-[-0.010em]">
+                500<span className="text-[#E46231] text-lg sm:text-xl ml-1">+</span>
               </div>
-              <div className="text-xs sm:text-sm text-gray-600 mt-2 uppercase tracking-[0.08em]">
+              <div className="text-[10px] sm:text-xs text-gray-600 mt-2 uppercase tracking-[0.08em]">
                 Products & Supplies
               </div>
             </div>
 
             {/* Stat 2 */}
-            <div className="flex flex-col">
-              <div className="text-4xl sm:text-5xl font-normal text-[#333333] flex items-start tracking-[-0.010em]">
-                25<span className="text-[#E46231] text-xl sm:text-3xl ml-1">+</span>
+            <div className="flex flex-col items-center text-center">
+              <div className="text-2xl sm:text-3xl font-normal text-[#333333] flex items-center tracking-[-0.010em]">
+                25<span className="text-[#E46231] text-lg sm:text-xl ml-1">+</span>
               </div>
-              <div className="text-xs sm:text-sm text-gray-600 mt-2 uppercase tracking-[0.08em]">
+              <div className="text-[10px] sm:text-xs text-gray-600 mt-2 uppercase tracking-[0.08em]">
                 Trusted Brands
               </div>
             </div>
 
             {/* Stat 3 */}
-            <div className="flex flex-col">
-              <div className="text-4xl sm:text-5xl font-normal text-[#333333] flex items-start tracking-[-0.010em]">
-                11<span className="text-[#E46231] text-xl sm:text-3xl ml-1">+</span>
+            <div className="flex flex-col items-center text-center">
+              <div className="text-2xl sm:text-3xl font-normal text-[#333333] flex items-center tracking-[-0.010em]">
+                12<span className="text-[#E46231] text-lg sm:text-xl ml-1">+</span>
               </div>
-              <div className="text-xs sm:text-sm text-gray-600 mt-2 uppercase tracking-[0.08em]">
+              <div className="text-[10px] sm:text-xs text-gray-600 mt-2 uppercase tracking-[0.08em]">
                 Export Markets
               </div>
             </div>

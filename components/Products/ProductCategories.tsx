@@ -1,7 +1,9 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import Link from 'next/link';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 interface Category {
   id: number;
@@ -15,24 +17,35 @@ interface ProductCategoriesProps {
 }
 
 export default function ProductCategories({ categories }: ProductCategoriesProps) {
+  useEffect(() => {
+    AOS.init({
+      duration: 600,
+      once: true,
+      offset: 50,
+    });
+    AOS.refresh();
+  }, []);
+
   return (
     <section className="py-10 md:pt-10 md:pb-6 bg-white font-sans">
       <div className="templateContainer">
-        <div className="mb-6 sm:mb-12 text-center">
+        <div className="mb-6 sm:mb-12 text-center" data-aos="fade-up">
           <h1 className="mt-2 sm:mt-3 text-[26px] sm:text-[32px] md:text-[40px] font-light leading-none tracking-[-0.010em] text-[#333333]">
             Product Categories
           </h1>
           <p className="mt-3 sm:mt-4 mx-auto max-w-2xl leading-[1.7] text-gray-600 text-[14px] tracking-[0.01em] sm:text-[16px]">
-            Explore our wide range of high-quality construction materials and building supplies. From cement and steel to plumbing and electrical equipment, we have everything you need for your projects.
+            Explore our range of construction materials from cement and steel to plumbing and electrical supplies.
           </p>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {categories.map((category) => (
+          {categories.map((category, index) => (
             <Link
               key={category.id}
               href={`/products?category=${category.slug}`}
               className="bg-white rounded-2xl shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-300 cursor-pointer"
+              data-aos="fade-up"
+              data-aos-delay={index * 100}
             >
               <div className="relative aspect-4/5 overflow-hidden p-2">
                 <img
