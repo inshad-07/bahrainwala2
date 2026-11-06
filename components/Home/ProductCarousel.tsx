@@ -35,7 +35,7 @@ function ProductCard({
         </h4>
         <div className="flex gap-3 justify-center pb-1">
           <a
-            href={`https://wa.me/971500000000?text=${encodeURIComponent(`Hi, I'm interested in ${product.name}. Please send me more details.`)}`}
+            href={`https://wa.me/971555085725?text=${encodeURIComponent(`Hi, I'm interested in ${product.name}. Please send me more details.`)}`}
             target="_blank"
             rel="noopener noreferrer"
             className="flex-1 bg-[#333333] text-white py-1.5 px-4 rounded-full text-sm tracking-[0.01em] font-medium hover:bg-[#1a1a1a] transition-colors duration-200 flex items-center justify-center gap-2 whitespace-nowrap"

@@ -1,7 +1,7 @@
 import React from 'react';
 
 const WhatsAppFloatingButton = () => {
-  const whatsappNumber = '97142250300'; // Update with your WhatsApp number
+  const whatsappNumber = '971555085725'; // Update with your WhatsApp number
   const whatsappMessage = 'Hello, I would like to inquire about your products.';
 
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;

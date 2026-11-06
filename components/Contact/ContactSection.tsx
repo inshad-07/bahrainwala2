@@ -73,7 +73,7 @@ export default function ContactSection() {
                     href="tel:+97142250300"
                     className="mt-1.5 block text-[16px] font-light tracking-[0.01em] text-[#333333] transition-colors hover:text-[#E46231] sm:text-[18px]"
                   >
-                    +971 4 2250300
+                    +971 4 2250300 / +971 4 2503515
                   </a>
                 </div>
               </div>
