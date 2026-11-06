@@ -1,10 +1,8 @@
 'use client';
 
-import React, { useState, useEffect, Suspense } from 'react';
+import React, { useState, useEffect, useRef, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { categories } from '@/lib/data';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
 
 interface Product {
   name: string;
@@ -19,14 +17,28 @@ function ProductsContent() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    AOS.init({
-      duration: 600,
-      once: true,
-      disable: 'mobile',
+    const elements = sectionRef.current?.querySelectorAll<HTMLElement>('[data-product-reveal]');
+    if (!elements || !('IntersectionObserver' in window)) return;
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        (entry.target as HTMLElement).dataset.reveal = 'visible';
+        observer.unobserve(entry.target);
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -20px 0px' });
+
+    elements.forEach((element) => {
+      if (element.dataset.reveal === 'visible') return;
+      element.dataset.reveal = 'pending';
+      observer.observe(element);
     });
-  }, []);
+
+    return () => observer.disconnect();
+  }, [selectedCategory]);
 
   useEffect(() => {
     function handleEscape(event: KeyboardEvent) {
@@ -68,9 +80,9 @@ function ProductsContent() {
   };
 
   return (
-    <section className="py-14 md:py-16 bg-white font-sans">
+    <section ref={sectionRef} className="pt-8 pb-14 md:pt-16 md:pb-16 bg-white font-sans">
       <div className="templateContainer">
-        <div className="mb-8 sm:mb-12 text-center" data-aos="fade-up">
+        <div className="mb-8 sm:mb-12 text-center scroll-reveal" data-product-reveal>
           <h1 className="mt-2 sm:mt-3 text-[26px] sm:text-[32px] md:text-[40px] font-light leading-none tracking-[-0.010em] text-[#333333]">
             All Products
           </h1>
@@ -80,7 +92,7 @@ function ProductsContent() {
         </div>
 
         {/* Filter */}
-        <div className="mb-8 flex justify-center" data-aos="fade-up" data-aos-delay="0">
+        <div className="mb-8 flex justify-center scroll-reveal" data-product-reveal>
           {/* Mobile: Filter Button */}
           <div className="relative sm:hidden w-full">
             <button
@@ -152,10 +164,10 @@ function ProductsContent() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {filteredProducts.map((product, index) => (
               <div
-                key={index}
-                className="bg-white rounded-2xl shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-300"
-                data-aos="fade-up"
-                data-aos-delay={200 + index * 50}
+                key={`${selectedCategory}-${index}`}
+                className="bg-white rounded-2xl shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-300 scroll-reveal"
+                style={{ '--reveal-delay': `${200 + index * 50}ms` } as React.CSSProperties}
+                data-product-reveal
               >
                 <div className="relative aspect-3/4 overflow-hidden p-2">
                   <img
@@ -390,7 +402,7 @@ function ProductsContent() {
 
 export default function Products() {
   return (
-    <Suspense fallback={<div className="py-14 md:py-16 bg-white font-sans"><div className="templateContainer"><div className="text-center py-12"><p className="text-gray-500">Loading...</p></div></div></div>}>
+    <Suspense fallback={<div className="pt-8 pb-14 md:pt-16 md:pb-16 bg-white font-sans"><div className="templateContainer"><div className="text-center py-12"><p className="text-gray-500">Loading...</p></div></div></div>}>
       <ProductsContent />
     </Suspense>
   );

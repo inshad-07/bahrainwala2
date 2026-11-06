@@ -1,9 +1,7 @@
 'use client';
 
 import Image from "next/image";
-import { useEffect } from 'react';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
+import { useEffect, useRef, type CSSProperties } from 'react';
 
 const brands = [
   { src: "/brand/10001.png", alt: "Brand 1" },
@@ -17,18 +15,33 @@ const brands = [
 ];
 
 export default function BrandSection() {
+  const sectionRef = useRef<HTMLElement>(null);
+
   useEffect(() => {
-    AOS.init({
-      duration: 600,
-      once: true,
-      disable: 'mobile',
+    const elements = sectionRef.current?.querySelectorAll<HTMLElement>('[data-brand-reveal]');
+    if (!elements || !('IntersectionObserver' in window)) return;
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        (entry.target as HTMLElement).dataset.reveal = 'visible';
+        observer.unobserve(entry.target);
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -20px 0px' });
+
+    elements.forEach((element) => {
+      if (element.dataset.reveal === 'visible') return;
+      element.dataset.reveal = 'pending';
+      observer.observe(element);
     });
+
+    return () => observer.disconnect();
   }, []);
 
   return (
-    <section className="py-14 md:py-16 bg-white">
+    <section ref={sectionRef} className="pt-8 pb-14 md:pt-16 md:pb-16 bg-white">
       <div className="templateContainer px-2 sm:px-0">
-        <div className="mb-8 sm:mb-12 text-center" data-aos="fade-up">
+        <div className="mb-8 sm:mb-12 text-center scroll-reveal" data-brand-reveal>
 
           <h1 className="mt-2 sm:mt-3 text-[26px] sm:text-[32px] md:text-[40px] font-light leading-none tracking-[-0.010em] text-[#333333]">
             Brands We Deal With
@@ -44,9 +57,9 @@ export default function BrandSection() {
           {brands.map((brand, index) => (
             <div
               key={brand.src}
-              className="flex h-16 sm:h-18 md:h-22 w-40 sm:w-40 md:w-50 items-center justify-center overflow-hidden rounded-md border border-[#E5E0D8] bg-white px-3 sm:px-3 hover:border-[#E46231] transition-colors"
-              data-aos="fade-up"
-              data-aos-delay={index * 50}
+              className="flex h-16 sm:h-18 md:h-22 w-40 sm:w-40 md:w-50 items-center justify-center overflow-hidden rounded-md border border-[#E5E0D8] bg-white px-3 sm:px-3 hover:border-[#E46231] transition-colors scroll-reveal"
+              style={{ '--reveal-delay': `${index * 50}ms` } as CSSProperties}
+              data-brand-reveal
             >
               <Image
                 src={brand.src}

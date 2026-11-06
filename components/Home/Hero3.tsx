@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function Hero3() {
   return (
-    <section className="relative w-full h-[80vh] md:h-auto md:aspect-16/8 -mt-35">
+    <section className="relative w-full h-[90vh] md:h-auto md:aspect-16/8 -mt-35">
       <picture>
         <source
           media="(max-width: 768px)"

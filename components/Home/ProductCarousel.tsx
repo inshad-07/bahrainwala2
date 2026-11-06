@@ -1,17 +1,19 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { categories } from "@/lib/data";
 import Link from "next/link";
 import ProductEnquiryModal from "@/components/Products/ProductEnquiryModal";
-import AOS from 'aos';
-import 'aos/dist/aos.css';
 
 interface Product {
   name: string;
   image: string;
   category: string;
 }
+
+const products: Product[] = categories.flatMap(cat =>
+  cat.products.map(p => ({ ...p, category: cat.title }))
+);
 
 function ProductCard({
   product,
@@ -55,45 +57,59 @@ function ProductCard({
 }
 
 export default function ProductCarousel() {
-  const [products, setProducts] = useState<Product[]>([]);
+  const sectionRef = useRef<HTMLElement>(null);
   const carouselRef = useRef<HTMLDivElement>(null);
+  const scrollIndexRef = useRef(0);
 
-  // Initialize AOS
   useEffect(() => {
-    AOS.init({
-      duration: 600,
-      once: true,
-      disable: 'mobile',
+    const elements = sectionRef.current?.querySelectorAll<HTMLElement>('[data-carousel-reveal]');
+    if (!elements || !('IntersectionObserver' in window)) return;
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        (entry.target as HTMLElement).dataset.reveal = 'visible';
+        observer.unobserve(entry.target);
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -20px 0px' });
+
+    elements.forEach((element) => {
+      if (element.dataset.reveal === 'visible') return;
+      element.dataset.reveal = 'pending';
+      observer.observe(element);
     });
-  }, []);
 
-  // Get all products from all categories
-  useEffect(() => {
-    const allProducts = categories.flatMap(cat =>
-      cat.products.map(p => ({ ...p, category: cat.title }))
-    );
-    setProducts(allProducts);
+    return () => observer.disconnect();
   }, []);
 
   const scroll = (direction: 'left' | 'right') => {
-    if (carouselRef.current) {
-      const cardWidth = carouselRef.current.children[0] as HTMLElement;
-      const gap = 16;
-      const cardsToScroll = window.innerWidth >= 1024 ? 4 : window.innerWidth >= 768 ? 2 : 1;
-      const scrollAmount = (cardWidth.offsetWidth + gap) * cardsToScroll;
-      carouselRef.current.scrollBy({
-        left: direction === 'left' ? -scrollAmount : scrollAmount,
-        behavior: 'smooth'
-      });
-    }
+    const carousel = carouselRef.current;
+    const card = carousel?.firstElementChild as HTMLElement | null;
+    if (!carousel || !card) return;
+
+    const gap = parseFloat(window.getComputedStyle(carousel).columnGap) || 0;
+    const scrollAmount = card.getBoundingClientRect().width + gap;
+    const maxScroll = carousel.scrollWidth - carousel.clientWidth;
+    const maxIndex = Math.round(maxScroll / scrollAmount);
+
+    // Track the destination so rapid clicks still move one complete card each.
+    scrollIndexRef.current = Math.max(0, Math.min(
+      maxIndex,
+      scrollIndexRef.current + (direction === 'left' ? -1 : 1)
+    ));
+
+    carousel.scrollTo({
+      left: Math.min(scrollIndexRef.current * scrollAmount, maxScroll),
+      behavior: 'smooth'
+    });
   };
 
   return (
     // <section className="py-14 md:py-16 bg-white overflow-visible">
-    <section className="py-10 md:pt-10 md:pb-6 bg-white overflow-visible">
+    <section ref={sectionRef} className="py-10 md:pt-10 md:pb-6 bg-white overflow-visible">
       <div className="templateContainer overflow-visible">
         {/* Heading */}
-        <div className="mb-6 sm:mb-10" data-aos="fade-up">
+        <div className="mb-6 sm:mb-10 scroll-reveal" data-carousel-reveal>
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4">
             <div>
               <p className="text-[10px] sm:text-xs font-normal uppercase leading-5 tracking-[0.18em] text-[#333333]">
@@ -166,7 +182,7 @@ export default function ProductCarousel() {
         {/* Product Carousel */}
         {products.length > 0 ? (
           <>
-            <div className="relative px-2 overflow-hidden">
+            <div className="relative px-2 overflow-hidden scroll-reveal" data-carousel-reveal>
               <div
                 ref={carouselRef}
                 className="flex gap-4 overflow-hidden scroll-smooth pb-4 select-none"
@@ -176,8 +192,6 @@ export default function ProductCarousel() {
                   <div
                     key={index}
                     className="shrink-0 w-full sm:w-[calc(50%-8px)] md:w-[calc(50%-8px)] lg:w-[calc(25%-12px)] snap-start"
-                    data-aos="fade-up"
-                    data-aos-delay={index * 50}
                   >
                     <ProductCard product={product} />
                   </div>
@@ -186,7 +200,7 @@ export default function ProductCarousel() {
             </div>
 
             {/* Mobile Navigation Buttons */}
-            <div className="flex sm:hidden items-center justify-between mt-6">
+            <div className="flex sm:hidden items-center justify-between mt-6 scroll-reveal" data-carousel-reveal>
               <Link
                 href="/products"
                 className="inline-flex items-center gap-2 rounded-full border border-[#E46231] bg-transparent px-5 py-2.5 text-[10px] font-normal uppercase tracking-[0.08em] text-[#E46231] transition hover:bg-[#E46231] hover:text-white"

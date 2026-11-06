@@ -237,13 +237,13 @@ export default function Header3() {
               <div className="px-5 py-3 border-t border-gray-200">
                 <p className="text-xs font-semibold text-[#1a1a1a] mb-2 uppercase tracking-[0.02em]">Contact</p>
                 <div className="space-y-2">
-                  <a href="tel:+97142250300" className="flex items-center gap-2.5 text-xs text-[#1a1a1a] hover:text-[#E46231] transition-colors">
+                  <a href="tel:+97142250300" className="flex items-center gap-2.5 text-sm text-[#1a1a1a] hover:text-[#E46231] transition-colors">
                     <svg className="w-4 h-4 text-[#E46231]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                     </svg>
                     <span>+971 4 2250300</span>
                   </a>
-                  <a href="mailto:sales.bahrainwala@gmail.com" className="flex items-center gap-2.5 text-xs text-[#1a1a1a] hover:text-[#E46231] transition-colors">
+                  <a href="mailto:sales.bahrainwala@gmail.com" className="flex items-center gap-2.5 text-sm text-[#1a1a1a] hover:text-[#E46231] transition-colors">
                     <svg className="w-4 h-4 text-[#E46231]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                     </svg>
@@ -270,20 +270,20 @@ export default function Header3() {
                   </a>
                 </div>
               </div>
-            </div>
 
-            {/* Sidebar Footer - Enquiry Form Button (Fixed at bottom) */}
-            <div className="p-4 border-t border-gray-200 shrink-0">
-              <button
-                type="button"
-                onClick={() => {
-                  setIsEnquiryOpen(true);
-                  setIsMobileMenuOpen(false);
-                }}
-                className="w-full px-5 py-2.5 rounded bg-[#E46231] text-white text-xs font-semibold tracking-[0.01em] hover:bg-[#d3541f] transition-colors"
-              >
-                Enquiry Form
-              </button>
+              {/* Enquiry Form Button */}
+              <div className="px-5 py-3 border-t border-gray-200">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setIsEnquiryOpen(true);
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className="w-full px-5 py-2.5 rounded bg-[#E46231] text-white text-xs font-semibold tracking-[0.01em] hover:bg-[#d3541f] transition-colors"
+                >
+                  Enquiry Form
+                </button>
+              </div>
             </div>
           </div>
         </div>

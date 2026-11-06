@@ -1,38 +1,51 @@
 'use client';
 
-import { useEffect } from 'react';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
+import { useEffect, useRef } from 'react';
 
 export default function ContactSection() {
+  const sectionRef = useRef<HTMLElement>(null);
+
   useEffect(() => {
-    AOS.init({
-      duration: 600,
-      once: true,
-      disable: 'mobile',
+    const elements = sectionRef.current?.querySelectorAll<HTMLElement>('[data-contact-reveal]');
+    if (!elements || !('IntersectionObserver' in window)) return;
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        (entry.target as HTMLElement).dataset.reveal = 'visible';
+        observer.unobserve(entry.target);
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -20px 0px' });
+
+    elements.forEach((element) => {
+      if (element.dataset.reveal === 'visible') return;
+      element.dataset.reveal = 'pending';
+      observer.observe(element);
     });
+
+    return () => observer.disconnect();
   }, []);
 
   return (
-    <section className="w-full bg-white px-4  sm:px-6 lg:px-[5vw] py-14 md:py-16">
+    <section ref={sectionRef} className="w-full bg-white px-4  sm:px-6 lg:px-[5vw] pt-8 pb-14 md:pt-18 md:pb-16">
       <div className="mx-auto grid max-w-[1340px] gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16 items-start">
 
         {/* Left Column: Heading, Info & Call Box */}
-        <div data-aos="fade-up">
-          <p className="text-[10px] sm:text-xs font-medium uppercase leading-5 tracking-[0.18em] text-[#333333]">
+        <div>
+          <p className="text-[10px] sm:text-xs font-medium uppercase leading-5 tracking-[0.18em] text-[#333333] scroll-reveal" data-contact-reveal>
             Get In Touch
           </p>
-          <h2 className="mt-2 sm:mt-3 text-[26px] sm:text-[32px] md:text-[40px] font-light leading-[1.2] tracking-[-0.010em] text-[#333333]">
+          <h2 className="mt-2 sm:mt-3 text-[26px] sm:text-[32px] md:text-[40px] font-light leading-[1.2] tracking-[-0.010em] text-[#333333] scroll-reveal" data-contact-reveal>
             Talk to Bahrainwala
           </h2>
-          <p className="mt-3 sm:mt-4 mx-auto max-w-2xl leading-[1.7] text-gray-600 text-[14px] tracking-[0.01em] sm:text-[16px]">
+          <p className="mt-3 sm:mt-4 mx-auto max-w-2xl leading-[1.7] text-gray-600 text-[14px] tracking-[0.01em] sm:text-[16px] scroll-reveal" data-contact-reveal>
             Questions about products, pricing, bulk orders or delivery? Email us directly or send a
             message below and our team will get back to you within one business day.
           </p>
 
           {/* Email Card */}
           <ul className="mt-8 space-y-4">
-            <li data-aos="fade-up" data-aos-delay="100">
+            <li className="scroll-reveal [--reveal-delay:100ms]" data-contact-reveal>
               <div className="flex items-center gap-4 rounded-2xl border border-[#000000]/20 bg-white p-4">
                 <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-gray-100 text-[#333333]">
                   <svg
@@ -61,7 +74,7 @@ export default function ContactSection() {
                 </div>
               </div>
             </li>
-            <li data-aos="fade-up" data-aos-delay="200">
+            <li className="scroll-reveal [--reveal-delay:200ms]" data-contact-reveal>
               <div className="flex items-center gap-4 rounded-2xl border border-[#000000]/20 bg-white p-4">
                 <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-gray-100 text-[#333333]">
                   <svg
@@ -89,7 +102,7 @@ export default function ContactSection() {
                 </div>
               </div>
             </li>
-            <li data-aos="fade-up" data-aos-delay="300">
+            <li className="scroll-reveal [--reveal-delay:300ms]" data-contact-reveal>
               <div className="flex items-center gap-4 rounded-2xl border border-[#000000]/20 bg-white p-4">
                 <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-gray-100 text-[#333333]">
                   <svg
@@ -119,7 +132,7 @@ export default function ContactSection() {
         </div>
 
         {/* Right Column: Form */}
-        <div data-aos="fade-up" data-aos-delay="400">
+        <div className="scroll-reveal [--reveal-delay:400ms]" data-contact-reveal>
           <form className="rounded-3xl border border-neutral-200 bg-white p-6 shadow-sm sm:p-8">
             <div className="grid gap-4 sm:grid-cols-2">
 

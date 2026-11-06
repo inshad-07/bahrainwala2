@@ -1,25 +1,40 @@
 'use client';
 
-import React, { useEffect } from 'react';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
+import React, { useEffect, useRef } from 'react';
+
+const fadeUpClass = 'scroll-reveal';
 
 export default function FeaturesSection() {
+  const sectionRef = useRef<HTMLElement>(null);
+
   useEffect(() => {
-    AOS.init({
-      duration: 600,
-      once: true,
-      disable: 'mobile',
+    const elements = sectionRef.current?.querySelectorAll<HTMLElement>('[data-feature-reveal]');
+    if (!elements || !('IntersectionObserver' in window)) return;
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        (entry.target as HTMLElement).dataset.reveal = 'visible';
+        observer.unobserve(entry.target);
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -20px 0px' });
+
+    elements.forEach((element) => {
+      if (element.dataset.reveal === 'visible') return;
+      element.dataset.reveal = 'pending';
+      observer.observe(element);
     });
+
+    return () => observer.disconnect();
   }, []);
 
   return (
     // <section className="pb-14 md:pb-16 font-sans">
-    <section className="py-10 md:pt-10 md:pb-6 font-sans">
+    <section ref={sectionRef} className="py-10 md:pt-10 md:pb-6 font-sans">
       <div className="templateContainer">
 
         {/* Header Section */}
-        <div className="text-center mb-12" data-aos="fade-up">
+        <div className={`text-center mb-12 ${fadeUpClass}`} data-feature-reveal>
           {/* Optional small top header (based on standard layouts) */}
           <h3 className="text-[#E46231] text-xs font-normal uppercase leading-5 tracking-[0.18em] mb-2">
             Why Choose Us
@@ -34,7 +49,7 @@ export default function FeaturesSection() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
           {/* Card 1 */}
-          <div className="bg-white p-8 rounded-2xl shadow-sm flex flex-col justify-start" data-aos="fade-up" data-aos-delay="0">
+          <div className={`bg-white p-8 rounded-2xl shadow-sm flex flex-col justify-start ${fadeUpClass}`} data-feature-reveal>
             <div className="h-11 w-11 rounded-xl bg-gray-100 flex items-center justify-center mb-6">
               <svg className="w-5 h-5 text-[#333333]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
@@ -48,7 +63,7 @@ export default function FeaturesSection() {
           </div>
 
           {/* Card 2 */}
-          <div className="bg-white p-8 rounded-2xl shadow-sm flex flex-col justify-start" data-aos="fade-up" data-aos-delay="100">
+          <div className={`bg-white p-8 rounded-2xl shadow-sm flex flex-col justify-start ${fadeUpClass} [--reveal-delay:100ms]`} data-feature-reveal>
             <div className="h-11 w-11 rounded-xl bg-gray-100 flex items-center justify-center mb-6">
               <svg className="w-5 h-5 text-[#333333]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
@@ -61,7 +76,7 @@ export default function FeaturesSection() {
           </div>
 
           {/* Card 3 */}
-          <div className="bg-white p-8 rounded-2xl shadow-sm flex flex-col justify-start" data-aos="fade-up" data-aos-delay="200">
+          <div className={`bg-white p-8 rounded-2xl shadow-sm flex flex-col justify-start ${fadeUpClass} [--reveal-delay:200ms]`} data-feature-reveal>
             <div className="h-11 w-11 rounded-xl bg-gray-100 flex items-center justify-center mb-6">
               <svg className="w-5 h-5 text-[#333333]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z" />
@@ -75,7 +90,7 @@ export default function FeaturesSection() {
           </div>
 
           {/* Card 4 */}
-          <div className="bg-white p-8 rounded-2xl shadow-sm flex flex-col justify-start" data-aos="fade-up" data-aos-delay="300">
+          <div className={`bg-white p-8 rounded-2xl shadow-sm flex flex-col justify-start ${fadeUpClass} [--reveal-delay:300ms]`} data-feature-reveal>
             <div className="h-11 w-11 rounded-xl bg-gray-100 flex items-center justify-center mb-6">
               <svg className="w-5 h-5 text-[#333333]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
@@ -88,7 +103,7 @@ export default function FeaturesSection() {
           </div>
 
           {/* Card 5 */}
-          <div className="bg-white p-8 rounded-2xl shadow-sm flex flex-col justify-start" data-aos="fade-up" data-aos-delay="400">
+          <div className={`bg-white p-8 rounded-2xl shadow-sm flex flex-col justify-start ${fadeUpClass} [--reveal-delay:400ms]`} data-feature-reveal>
             <div className="h-11 w-11 rounded-xl bg-gray-100 flex items-center justify-center mb-6">
               <svg className="w-5 h-5 text-[#333333]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
@@ -101,7 +116,7 @@ export default function FeaturesSection() {
           </div>
 
           {/* Image */}
-          <div className="relative rounded-2xl overflow-hidden aspect-video shadow-sm" data-aos="fade-up" data-aos-delay="500">
+          <div className={`relative rounded-2xl overflow-hidden aspect-video shadow-sm ${fadeUpClass} [--reveal-delay:500ms]`} data-feature-reveal>
             <img
               src="/about/Machinist-at-a-Milling-Machine.webp"
               alt="Professional contractor measuring wood"

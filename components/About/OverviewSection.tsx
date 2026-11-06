@@ -1,44 +1,59 @@
 'use client';
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import Image from 'next/image';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
+
+const fadeUpClass = 'scroll-reveal';
 
 export default function OverviewSection() {
+  const sectionRef = useRef<HTMLElement>(null);
+
   useEffect(() => {
-    AOS.init({
-      duration: 600,
-      once: true,
-      disable: 'mobile',
+    const elements = sectionRef.current?.querySelectorAll<HTMLElement>('[data-overview-reveal]');
+    if (!elements || !('IntersectionObserver' in window)) return;
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        (entry.target as HTMLElement).dataset.reveal = 'visible';
+        observer.unobserve(entry.target);
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -20px 0px' });
+
+    elements.forEach((element) => {
+      if (element.dataset.reveal === 'visible') return;
+      element.dataset.reveal = 'pending';
+      observer.observe(element);
     });
+
+    return () => observer.disconnect();
   }, []);
 
   return (
-    <section className="py-14 md:py-16 bg-white">
+    <section ref={sectionRef} className="pt-10 pb-14 md:pt-16 md:pb-16 bg-white">
       <div className="templateContainer grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-6 items-center">
 
         {/* Left Content */}
-        <div className="flex flex-col pr-0 lg:pr-0 xl:pr-0" data-aos="fade-up">
-          <p className="mb-3 text-xs font-medium uppercase leading-5 tracking-[0.18em] text-[#333333]">
+        <div className="flex flex-col pr-0 lg:pr-0 xl:pr-0">
+          <p className={`mb-3 text-xs font-medium uppercase leading-5 tracking-[0.18em] text-[#333333] ${fadeUpClass}`} data-overview-reveal>
             About Us
           </p>
-          <h2 className="mt-2 sm:mt-3 mb-5 text-balance text-[26px] font-light leading-none tracking-[-0.010em] text-[#333333] sm:text-[32px] md:text-[36px] lg:text-[40px]">
+          <h2 className={`mt-2 sm:mt-3 mb-5 text-balance text-[26px] font-light leading-none tracking-[-0.010em] text-[#333333] sm:text-[32px] md:text-[36px] lg:text-[40px] ${fadeUpClass}`} data-overview-reveal>
             Bahrainwala Building Materials Trading CO LLC
           </h2>
 
           <div className="text-gray-600 text-[14px] leading-[1.7] tracking-[0.01em] space-y-5 mb-10 sm:text-[16px]">
-            <p>
+            <p className={fadeUpClass} data-overview-reveal>
               Bahrainwala Building Materials Trading CO LLC is a trusted supplier of quality building materials, offering a wide range of products for construction and trading needs across the UAE.
             </p>
-            <p>
+            <p className={fadeUpClass} data-overview-reveal>
               We offer CNC and lathe machine tools, measuring instruments, carbide inserts, welding tools, construction materials, power tools, safety products, paints, adhesives and abrasives — delivering the highest quality in the fastest time at the lowest possible price.
             </p>
           </div>
 
           {/* Counters Grid */}
-          <div className="grid grid-cols-2 gap-6 mb-12 items-center" data-aos="fade-up" data-aos-delay="100">
-            <div className="text-left">
+          <div className="grid grid-cols-2 gap-6 mb-12 items-center">
+            <div className={`text-left ${fadeUpClass} [--reveal-delay:100ms]`} data-overview-reveal>
               <h3 className="text-2xl md:text-3xl text-[#333333] mb-1.5 leading-[1.1] tracking-[-0.010em]">
                 500+
               </h3>
@@ -46,7 +61,7 @@ export default function OverviewSection() {
                 Quality Building Material Products
               </p>
             </div>
-            <div className="text-left">
+            <div className={`text-left ${fadeUpClass} [--reveal-delay:200ms]`} data-overview-reveal>
               <h3 className="text-2xl md:text-3xl text-[#333333] mb-1.5 leading-[1.1] tracking-[-0.010em]">
                 25+
               </h3>
@@ -60,9 +75,8 @@ export default function OverviewSection() {
           <a
             href="/BAHRAINWALA-CATALOGE.pdf"
             download
-            className="group flex items-center w-fit text-[#f97316] tracking-widest uppercase text-xs md:text-sm hover:opacity-80 transition-opacity"
-            data-aos="fade-up"
-            data-aos-delay="200"
+            className={`group flex items-center w-fit text-[#f97316] tracking-widest uppercase text-xs md:text-sm hover:opacity-80 transition-opacity ${fadeUpClass} [--reveal-delay:200ms]`}
+            data-overview-reveal
           >
             <span className="mr-4">Download Brochure</span>
             <span className="w-10 h-10 rounded-full border border-[#f97316] flex items-center justify-center group-hover:bg-[#f97316] group-hover:text-white transition-colors">
@@ -74,10 +88,10 @@ export default function OverviewSection() {
         </div>
 
         {/* Right Content - Image Collage */}
-        <div className="flex items-end justify-center lg:justify-end gap-3 md:gap-5 relative" data-aos="fade-up" data-aos-delay="300">
+        <div className="flex items-end justify-center lg:justify-end gap-3 md:gap-5 relative">
 
           {/* Small Left Image */}
-          <div className="relative w-[45%] max-w-60 aspect-3/4 overflow-hidden rounded-tl-[100px] md:rounded-tl-[140px]">
+          <div className={`relative w-[45%] max-w-60 aspect-3/4 overflow-hidden rounded-tl-[100px] md:rounded-tl-[140px] ${fadeUpClass} [--reveal-delay:300ms]`} data-overview-reveal>
             <Image
               src="/about/Bright-Electronics-Shop-with-Smiling-Shopkeeper.webp"
               alt="Overview small representation"
@@ -88,7 +102,7 @@ export default function OverviewSection() {
           </div>
 
           {/* Large Right Image */}
-          <div className="relative w-[55%] max-w-[340px] aspect-7/10 shadow-lg ring-2 ring-[#f97316]/30">
+          <div className={`relative w-[55%] max-w-[340px] aspect-7/10 shadow-lg ring-2 ring-[#f97316]/30 ${fadeUpClass} [--reveal-delay:400ms]`} data-overview-reveal>
             <Image
               src="/about/Bahrain-Wala-Hardware-Storefront-(1).webp"
               alt="Overview large room view"

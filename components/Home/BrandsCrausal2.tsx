@@ -3,8 +3,8 @@
 import { useState, useEffect, useRef, type PointerEvent, type MouseEvent } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import AOS from 'aos';
-import 'aos/dist/aos.css';
+
+const fadeUpClass = 'scroll-reveal';
 
 interface Brand {
   slug: string;
@@ -62,6 +62,7 @@ function BrandLogo({
 
 export default function BrandsCrausal2() {
   const [brands, setBrands] = useState<Brand[]>([]);
+  const sectionRef = useRef<HTMLElement>(null);
   const dragRef = useRef<{
     track: HTMLDivElement;
     pointerId: number;
@@ -126,14 +127,27 @@ export default function BrandsCrausal2() {
     draggedRef.current = false;
   };
 
-  // Initialize AOS
+  // Reveal each element independently, including logos added after loading.
   useEffect(() => {
-    AOS.init({
-      duration: 600,
-      once: true,
-      disable: 'mobile',
+    const elements = sectionRef.current?.querySelectorAll<HTMLElement>('[data-brand-reveal]');
+    if (!elements || !('IntersectionObserver' in window)) return;
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        (entry.target as HTMLElement).dataset.reveal = 'visible';
+        observer.unobserve(entry.target);
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -20px 0px' });
+
+    elements.forEach((element) => {
+      if (element.dataset.reveal === 'visible') return;
+      element.dataset.reveal = 'pending';
+      observer.observe(element);
     });
-  }, []);
+
+    return () => observer.disconnect();
+  }, [brands]);
 
   // Fetch brands from API
   useEffect(() => {
@@ -176,27 +190,26 @@ export default function BrandsCrausal2() {
 
   return (
     // <section className="pb-14 md:pb-16">
-    <section className="py-10 md:py-10">
+    <section ref={sectionRef} className="py-10 md:py-10">
       <div className="templateContainer">
         {/* Heading */}
         <div className="mb-6 sm:mb-10">
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4">
             <div>
-              <p className="text-[10px] sm:text-xs font-normal uppercase leading-5 tracking-[0.18em] text-[#333333]" data-aos="fade-up">
+              <p className={`text-[10px] sm:text-xs font-normal uppercase leading-5 tracking-[0.18em] text-[#333333] ${fadeUpClass}`} data-brand-reveal>
                 Our Partners
               </p>
-              <h2 className="mt-2 sm:mt-3 text-[26px] sm:text-[32px] md:text-[40px] font-light leading-none tracking-[-0.010em] text-[#333333]" data-aos="fade-up" data-aos-delay="100">
+              <h2 className={`mt-2 sm:mt-3 text-[26px] sm:text-[32px] md:text-[40px] font-light leading-none tracking-[-0.010em] text-[#333333] ${fadeUpClass} [--reveal-delay:100ms]`} data-brand-reveal>
                 Brands We Deal With
               </h2>
-              <p className="mt-2 sm:mt-3 max-w-md leading-[1.7] text-gray-600 text-[14px] tracking-[0.01em] sm:text-[16px]" data-aos="fade-up" data-aos-delay="200">
+              <p className={`mt-2 sm:mt-3 max-w-md leading-[1.7] text-gray-600 text-[14px] tracking-[0.01em] sm:text-[16px] ${fadeUpClass} [--reveal-delay:200ms]`} data-brand-reveal>
                 Authorized dealer of K-PRIX, COMET, MITUTOYO, INSIZE and more.
               </p>
             </div>
             <Link
               href="/brands"
-              className="mt-4 sm:mt-0 inline-flex items-center gap-2 rounded-full border border-[#E46231] bg-transparent px-5 py-2.5 sm:px-7 sm:py-3 text-[10px] sm:text-xs font-normal uppercase tracking-[0.08em] text-[#E46231] transition hover:bg-[#E46231] hover:text-white shrink-0 w-auto justify-start sm:justify-center"
-              data-aos="fade-up"
-              data-aos-delay="300"
+              className={`mt-4 sm:mt-0 inline-flex items-center gap-2 rounded-full border border-[#E46231] bg-transparent px-5 py-2.5 sm:px-7 sm:py-3 text-[10px] sm:text-xs font-normal uppercase tracking-[0.08em] text-[#E46231] hover:bg-[#E46231] hover:text-white shrink-0 w-auto justify-start sm:justify-center transition-colors ${fadeUpClass} [--reveal-delay:300ms]`}
+              data-brand-reveal
             >
               View All
               <svg
@@ -231,7 +244,7 @@ export default function BrandsCrausal2() {
                   {[0, 1].map((copy) => (
                     <div className="brand-marquee-group" key={copy} aria-hidden={copy === 1}>
                       {row.map((brand) => (
-                        <div className="brand-marquee-item" key={brand.slug}>
+                        <div className={`brand-marquee-item ${fadeUpClass}`} key={brand.slug} data-brand-reveal>
                           <div className="flex h-15 sm:h-18 md:h-22 w-full items-center justify-center overflow-hidden rounded-md border border-[#E5E0D8] bg-transparent px-2 sm:px-3 hover:border-[#E46231] transition-colors">
                             <BrandLogo
                               src={brand.image_id}

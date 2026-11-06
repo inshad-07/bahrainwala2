@@ -50,23 +50,23 @@ export default function EnquiryForm({ isOpen, onClose }: EnquiryFormProps) {
       onClick={onClose}
     >
       <div
-        className="w-full max-w-4xl max-h-[90vh] bg-white rounded-2xl sm:rounded-3xl shadow-2xl overflow-y-auto"
+        className="relative w-full max-w-4xl max-h-[90vh] bg-white rounded-2xl sm:rounded-3xl shadow-2xl overflow-y-auto"
         onClick={(e) => e.stopPropagation()}
       >
+        <button
+          type="button"
+          onClick={onClose}
+          className="absolute top-2 right-2 p-2 rounded-full bg-white hover:bg-gray-100 transition-colors z-10"
+          aria-label="Close"
+        >
+          <svg className="h-6 w-6 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
         <div className="grid grid-cols-1 md:grid-cols-2 min-h-full md:items-center">
           {/* Form on mobile (top), Right on desktop */}
           <div className="p-4 sm:p-5 md:p-6 relative order-1 md:order-2">
-            <button
-              onClick={onClose}
-              className="absolute top-2 right-2 p-2 rounded-full hover:bg-gray-100 transition-colors z-10"
-              aria-label="Close"
-            >
-              <svg className="h-6 w-6 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
-
-            <div className="mb-3 sm:mb-4">
+            <div className="mb-3 sm:mb-4 pr-8">
               <h3 className="text-lg sm:text-xl md:text-2xl font-light text-[#333333]">
                 Enquiry Form
               </h3>
@@ -162,8 +162,8 @@ export default function EnquiryForm({ isOpen, onClose }: EnquiryFormProps) {
           {/* Image on mobile (bottom), Left on desktop */}
           <div className="relative h-auto md:h-auto p-2 order-2 md:order-1">
             <img
-              src="/logo/main-logo.png"
-              alt="Bahrainwala Building Materials"
+              src="/products/Abrasive-and-Wheels-Product.webp"
+              alt="Abrasive and wheels products"
               className="w-full h-auto object-cover rounded-2xl sm:rounded-3xl"
             />
           </div>
