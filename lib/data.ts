@@ -35,19 +35,19 @@ export const categories = [
     products: [
       {
         name: "Bibielle Abrasives Technologies",
-        image: "/products/Abrasive-and-Wheels-Product/Bibielle Abrasives Technologies.webp",
+        image: "/products/Abrasive-and-Wheels-Product/Bibielle-Abrasives-Technologies.webp",
       },
       {
         name: "Hito Abrasive",
-        image: "/products/Abrasive-and-Wheels-Product/Hito Abrasive.webp",
+        image: "/products/Abrasive-and-Wheels-Product/Hito-Abrasive.webp",
       },
       {
         name: "Kullen Rotary Wire Brushes",
-        image: "/products/Abrasive-and-Wheels-Product/Kullen Rotary Wire Brushes.webp",
+        image: "/products/Abrasive-and-Wheels-Product/Kullen-Rotary-Wire-Brushes.webp",
       },
       {
         name: "Abrasive Wheel",
-        image: "/products/Abrasive-and-Wheels-Product/Untitled design (26).webp",
+        image: "/products/Abrasive-and-Wheels-Product/Untitled-design-(26).webp",
       },
     ],
   },
@@ -59,19 +59,19 @@ export const categories = [
     products: [
       {
         name: "Inspection Mirrors, Magnets, and Pick Up Tools",
-        image: "/products/Machine-Tools-Dealers/Inspection Mirrors, Magnets, and Pick Up Tools.webp",
+        image: "/products/Machine-Tools-Dealers/Inspection-Mirrors,-Magnets,-and-Pick-Up-Tools.webp",
       },
       {
         name: "Lyon Shim Stock",
-        image: "/products/Machine-Tools-Dealers/Lyon Shim Stock.webp",
+        image: "/products/Machine-Tools-Dealers/Lyon-Shim-Stock.webp",
       },
       {
         name: "Magbroach UK",
-        image: "/products/Machine-Tools-Dealers/Magbroach UK.webp",
+        image: "/products/Machine-Tools-Dealers/Magbroach-UK.webp",
       },
       {
         name: "Nicon Vises",
-        image: "/products/Machine-Tools-Dealers/Nicon Vises.webp",
+        image: "/products/Machine-Tools-Dealers/Nicon-Vises.webp",
       },
     ],
   },
@@ -83,19 +83,19 @@ export const categories = [
     products: [
       {
         name: "Ambersil Tufcut Metal Cutting Liquid",
-        image: "/products/Thread-Repair-Tool-Set/Ambersil Tufcut Metal Cutting Liquid.webp",
+        image: "/products/Thread-Repair-Tool-Set/Ambersil-Tufcut-Metal-Cutting-Liquid.webp",
       },
       {
         name: "Tap Extractor for Damage And Broken Taps",
-        image: "/products/Thread-Repair-Tool-Set/Tap Extractor for Damage And Broken Taps.webp",
+        image: "/products/Thread-Repair-Tool-Set/Tap-Extractor-for-Damage-And-Broken-Taps.webp",
       },
-      // {
-      //   name: "Thread Repair Kits UNS",
-      //   image: "/products/Thread-Repair-Tool-Set/Thread Repair Kits UNS.webp",
-      // },
+      {
+        name: "Thread Repair Kits UNS",
+        image: "/products/Thread-Repair-Tool-Set/Thread-Repair-Kits-UNS.webp",
+      },
       {
         name: "Thread Restoring Files",
-        image: "/products/Thread-Repair-Tool-Set/Thread Restoring Files.webp",
+        image: "/products/Thread-Repair-Tool-Set/Thread-Restoring-Files.webp",
       },
     ],
   },
