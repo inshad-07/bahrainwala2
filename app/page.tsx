@@ -6,11 +6,13 @@ import Image from "next/image";
 import ProductCarousel from "@/components/Home/ProductCarousel";
 import ProductCategories from "@/components/Products/ProductCategories";
 import { categories } from "@/lib/data";
+import Hero2 from "@/components/Home/Hero2";
 
 export default function Home() {
   return (
    <div>
-    <Hero/>
+    {/* <Hero/> */}
+    <Hero2/>
      <ProductCategories categories={categories} />
     <ProductCarousel/>
     <AboutSection/>

@@ -62,7 +62,7 @@ export default function Header3() {
               alt="Bahrainwala Building Materials Trading CO LLC"
               width={515}
               height={233}
-              className="h-12 sm:h-14 md:h-20 w-auto"
+              className={`h-12 sm:h-14 md:h-20 w-auto ${isTransparent ? 'brightness-0 invert' : ''}`}
               priority
             />
           </Link>
