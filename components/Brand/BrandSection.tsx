@@ -43,13 +43,11 @@ export default function BrandSection() {
       <div className="templateContainer px-2 sm:px-0">
         <div className="mb-8 sm:mb-12 text-center scroll-reveal" data-brand-reveal>
 
-          <h1 className="mt-2 sm:mt-3 text-[26px] sm:text-[32px] md:text-[40px] font-light leading-none tracking-[-0.010em] text-[#333333]">
+          <h1 className="mt-2 sm:mt-3 text-[26px] sm:text-[32px] md:text-[40px] font-light font-seasonmix leading-8 md:leading-15.5 tracking-[1.02px] text-[#333333]">
             Brands We Deal With
           </h1>
-          <p className="mt-3 sm:mt-4 mx-auto max-w-2xl leading-[1.7] text-gray-600 text-[14px] tracking-[0.01em] sm:text-[16px]">
-            Authorized dealer of K-PRIX, COMET, MITUTOYO, INSIZE, BAKER &amp;
-            KRISTEEL, KORLOY, TAEGUTEC and WIDIA — plus automobile tools, power
-            tools and safety products.
+          <p className="mt-3 sm:mt-4 mx-auto max-w-2xl leading-[1.7] font-light text-gray-600 text-[14px] tracking-[0.01em] sm:text-[16px]">
+            Your trusted partner for premium industrial tools and equipment. We specialize in providing high-quality solutions from world-renowned brands to meet all your professional needs.
           </p>
         </div>
 

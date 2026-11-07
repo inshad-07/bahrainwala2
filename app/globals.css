@@ -17,6 +17,7 @@ html {
   --font-mono: var(--font-geist-mono);
   --font-description: var(--font-inter);
   --font-heading: var(--font-outfit);
+  --font-seasonmix: var(--font-season-mix);
 }
 
 /* Keyframes also run when an in-view element is revealed before its first paint. */

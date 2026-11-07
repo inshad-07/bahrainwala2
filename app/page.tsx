@@ -7,6 +7,7 @@ import ProductCarousel from "@/components/Home/ProductCarousel";
 import ProductCategories from "@/components/Products/ProductCategories";
 import { categories } from "@/lib/data";
 import Hero2 from "@/components/Home/Hero2";
+import StatsSection from "@/components/Home/StatsSection";
 // import Hero3 from "@/components/Home/Hero3";
 
 export default function Home() {
@@ -18,6 +19,7 @@ export default function Home() {
      <ProductCategories categories={categories} />
     <ProductCarousel/>
     <AboutSection/>
+    <StatsSection/>
     <FeaturesSection/>
     <BrandsCrausal2/>
    </div>

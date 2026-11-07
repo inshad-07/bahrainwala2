@@ -37,7 +37,7 @@ export default function ProductEnquiryModal({ product }: ProductEnquiryModalProp
     <>
       <button
         onClick={() => setIsModalOpen(true)}
-        className="flex-1 bg-white border-2 border-[#333333] text-[#333333] py-2 px-3 rounded-full text-sm tracking-[0.01em] font-medium hover:bg-[#333333]/10 transition-colors duration-200 whitespace-nowrap flex items-center justify-center"
+        className="flex-1 bg-white/20 backdrop-blur-sm text-white py-2 px-3 rounded-full text-sm tracking-[0.01em] font-medium hover:bg-white hover:text-[#333333] transition-all duration-300 whitespace-nowrap flex items-center justify-center"
       >
         Enquire Now
       </button>

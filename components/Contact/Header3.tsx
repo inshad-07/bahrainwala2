@@ -52,9 +52,9 @@ export default function Header3() {
     <header className={`fixed top-0 left-0 right-0 z-50 w-full font-sans transition-colors duration-300 ${
       isTransparent ? 'bg-transparent' : 'bg-white shadow'
     }`}>
-      <div className="templateContainer pb-2 sm:pb-2 py-2 sm:py-0">
+      <div className={`templateContainer pb-2 sm:pb-2 transition-all duration-300 ${isScrolled ? 'py-1 sm:py-1' : 'py-2 sm:py-0'}`}>
         <div className="flex items-center justify-between gap-8">
-          
+
           {/* Logo - Left */}
           <Link href="/" className="flex items-center">
             <Image
@@ -62,53 +62,13 @@ export default function Header3() {
               alt="Bahrainwala Building Materials Trading CO LLC"
               width={515}
               height={233}
-              className={`h-12 sm:h-14 md:h-20 w-auto ${isTransparent ? 'brightness-0 invert' : ''}`}
+              className={`transition-all duration-300 w-auto ${isScrolled ? 'h-10 sm:h-12 md:h-14' : 'h-12 sm:h-14 md:h-20'} ${isTransparent ? 'brightness-0 invert' : ''}`}
               priority
             />
           </Link>
 
-          {/* Right Side - Two Rows */}
-          <div className="flex-1 flex flex-col gap-1">
-            
-            {/* First Row: Phone, Email & Social Media - Hidden on mobile */}
-            <div className="hidden lg:flex justify-end items-center pb-2">
-              <div className={`flex items-center gap-6 py-3 border-b ${isTransparent ? 'border-white/30' : 'border-gray-200'}`}>
-                {/* Phone */}
-                <a href="tel:+97142250300" className={`flex items-center gap-2 text-sm tracking-[0.02em] hover:text-[#E46231] transition-colors ${isTransparent ? 'text-white' : 'text-[#1a1a1a]'}`}>
-                  <svg className={`w-4 h-4 ${isTransparent ? 'text-white' : 'text-[#E46231]'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                  </svg>
-                  <span>+971 4 2250300</span>
-                </a>
-
-                {/* Email */}
-                <a href="mailto:sales.bahrainwala@gmail.com" className={`flex items-center gap-2 text-sm tracking-[0.02em] hover:text-[#E46231] transition-colors ${isTransparent ? 'text-white' : 'text-[#1a1a1a]'}`}>
-                  <svg className={`w-4 h-4 ${isTransparent ? 'text-white' : 'text-[#E46231]'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                  </svg>
-                  <span>sales.bahrainwala@gmail.com</span>
-                </a>
-
-                {/* Social Icons */}
-                <div className="hidden lg:flex items-center gap-3">
-                  <a href="#" aria-label="Facebook" className={`p-1.5 border rounded-full hover:border-[#E46231] hover:text-[#E46231] transition-colors ${isTransparent ? 'border-white/30 text-white' : 'border-gray-300 text-[#1a1a1a]'}`}>
-                    <FaFacebookF className="w-3.5 h-3.5" />
-                  </a>
-                  <a href="#" aria-label="Instagram" className={`p-1.5 border rounded-full hover:border-[#E46231] hover:text-[#E46231] transition-colors ${isTransparent ? 'border-white/30 text-white' : 'border-gray-300 text-[#1a1a1a]'}`}>
-                    <FaInstagram className="w-3.5 h-3.5" />
-                  </a>
-                  <a href="#" aria-label="LinkedIn" className={`p-1.5 border rounded-full hover:border-[#E46231] hover:text-[#E46231] transition-colors ${isTransparent ? 'border-white/30 text-white' : 'border-gray-300 text-[#1a1a1a]'}`}>
-                    <FaLinkedinIn className="w-3.5 h-3.5" />
-                  </a>
-                  <a href="#" aria-label="YouTube" className={`p-1.5 border rounded-full hover:border-[#E46231] hover:text-[#E46231] transition-colors ${isTransparent ? 'border-white/30 text-white' : 'border-gray-300 text-[#1a1a1a]'}`}>
-                    <FaYoutube className="w-3.5 h-3.5" />
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            {/* Second Row: Navigation Menu */}
-            <div className="flex justify-end items-center gap-6">
+          {/* Right Side - Navigation Menu */}
+          <div className="flex-1 flex items-center justify-end gap-6">
               <nav className="hidden lg:flex items-center gap-6">
                 {navLinks.map(({ href, label }) => {
                   const isActive = pathname === href;
@@ -116,10 +76,8 @@ export default function Header3() {
                     <Link
                       key={href}
                       href={href}
-                      className={`text-sm font-medium uppercase tracking-[0.04em] relative group transition-colors ${
-                        isActive
-                          ? 'text-[#E46231]'
-                          : isTransparent
+                      className={`text-xs font-light uppercase tracking-[0.04em] relative group transition-colors ${
+                        isTransparent
                           ? 'text-white hover:text-[#E46231]'
                           : 'text-[#1a1a1a] hover:text-[#E46231]'
                       }`}
@@ -140,11 +98,12 @@ export default function Header3() {
                 <button
                   type="button"
                   onClick={() => setIsMobileMenuOpen(true)}
-                  className={`lg:hidden p-2 rounded-lg transition-colors ${
+                  className={`lg:hidden flex items-center gap-2 p-2 rounded-lg transition-colors ${
                     isTransparent ? 'text-white hover:bg-white/10' : 'text-[#1a1a1a] hover:bg-gray-100'
                   }`}
                   aria-label="Open menu"
                 >
+                  <span className="text-sm font-light uppercase tracking-[0.02em]">Menu</span>
                   <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M4 6h16M4 12h16M4 18h16" />
                   </svg>
@@ -155,15 +114,14 @@ export default function Header3() {
               <button
                 type="button"
                 onClick={() => setIsEnquiryOpen(true)}
-                className={`hidden lg:block px-5 py-2 rounded text-sm font-medium tracking-[0.01em] hover:bg-[#d3541f] transition-colors whitespace-nowrap ${
+                className={`hidden lg:block px-5 py-2 rounded-full text-sm font-medium tracking-[0.01em] border-2 hover:bg-white transition-colors whitespace-nowrap ${
                   isTransparent
-                    ? 'bg-[#E46231] text-white'
-                    : 'bg-[#E46231] text-white'
+                    ? 'border-white text-white hover:text-[#1a1a1a]'
+                    : 'border-[#1a1a1a] text-[#1a1a1a] hover:text-[#1a1a1a]'
                 }`}
               >
                 Enquiry Form
               </button>
-            </div>
           </div>
         </div>
       </div>
@@ -221,7 +179,7 @@ export default function Header3() {
                       key={href}
                       href={href}
                       onClick={() => setIsMobileMenuOpen(false)}
-                      className={`block px-5 py-3 text-sm font-medium uppercase tracking-[0.02em] transition-colors ${
+                      className={`block px-5 py-3 text-sm font-light uppercase tracking-[0.02em] transition-colors ${
                         isActive
                           ? 'text-[#E46231] bg-gray-50'
                           : 'text-[#1a1a1a] hover:text-[#E46231] hover:bg-gray-50'
@@ -235,15 +193,15 @@ export default function Header3() {
 
               {/* Contact Info */}
               <div className="px-5 py-3 border-t border-gray-200">
-                <p className="text-xs font-semibold text-[#1a1a1a] mb-2 uppercase tracking-[0.02em]">Contact</p>
+                <p className="text-xs font-light text-[#1a1a1a] mb-2 uppercase tracking-[0.02em]">Contact</p>
                 <div className="space-y-2">
-                  <a href="tel:+97142250300" className="flex items-center gap-2.5 text-sm text-[#1a1a1a] hover:text-[#E46231] transition-colors">
+                  <a href="tel:+97142250300" className="flex items-center gap-2.5 text-sm font-light text-[#1a1a1a] hover:text-[#E46231] transition-colors">
                     <svg className="w-4 h-4 text-[#E46231]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                     </svg>
                     <span>+971 4 2250300</span>
                   </a>
-                  <a href="mailto:sales.bahrainwala@gmail.com" className="flex items-center gap-2.5 text-sm text-[#1a1a1a] hover:text-[#E46231] transition-colors">
+                  <a href="mailto:sales.bahrainwala@gmail.com" className="flex items-center gap-2.5 text-sm font-light text-[#1a1a1a] hover:text-[#E46231] transition-colors">
                     <svg className="w-4 h-4 text-[#E46231]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                     </svg>
@@ -254,7 +212,7 @@ export default function Header3() {
 
               {/* Social Media Icons */}
               <div className="px-5 py-3 border-t border-gray-200">
-                <p className="text-xs font-semibold text-[#1a1a1a] mb-2 uppercase tracking-[0.02em]">Follow</p>
+                <p className="text-xs font-light text-[#1a1a1a] mb-2 uppercase tracking-[0.02em]">Follow</p>
                 <div className="flex items-center gap-3">
                   <a href="#" aria-label="Facebook" className="p-2 border rounded-full hover:border-[#E46231] hover:text-[#E46231] transition-colors border-gray-300 text-[#1a1a1a]">
                     <FaFacebookF className="w-4 h-4" />
@@ -279,7 +237,7 @@ export default function Header3() {
                     setIsEnquiryOpen(true);
                     setIsMobileMenuOpen(false);
                   }}
-                  className="w-full px-5 py-2.5 rounded bg-[#E46231] text-white text-xs font-semibold tracking-[0.01em] hover:bg-[#d3541f] transition-colors"
+                  className="w-full px-5 py-2.5 rounded-full border border-[#1a1a1a] text-[#1a1a1a] text-xs font-semibold tracking-[0.01em] hover:bg-white hover:text-[#1a1a1a] transition-colors"
                 >
                   Enquiry Form
                 </button>

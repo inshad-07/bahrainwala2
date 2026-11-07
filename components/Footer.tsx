@@ -37,7 +37,7 @@ const Footer = () => {
         <div className="templateContainer py-4 md:py-6 relative flex flex-col md:flex-row items-center justify-between">
           <div className="z-10 order-1 md:order-0 mb-2 md:mb-0 w-full md:w-auto scroll-reveal [--reveal-delay:100ms]" data-footer-reveal>
             <h3 className="text-xs md:text-sm font-normal tracking-[0.04em] mb-1 uppercase">Download</h3>
-            <h2 className="text-xl md:text-3xl font-light tracking-[-0.01em]">Bahrainwala Building Materials Trading CO LLC</h2>
+            <h2 className="text-xl md:text-3xl font-light font-seasonmix leading-8 md:leading-15.5 tracking-[1.02px]">Bahrainwala Building Materials Trading CO LLC</h2>
           </div>
 
           {/* Catalog Image - Positioned absolutely for the overlap effect seen in the design */}
@@ -87,7 +87,7 @@ const Footer = () => {
 
             {/* Column 2: Company Links */}
             <div className="lg:col-span-2 lg:ml-8 scroll-reveal [--reveal-delay:200ms]" data-footer-reveal>
-              <h3 className="text-base font-normal mb-3 md:mb-6 uppercase tracking-[0.04em]">Company</h3>
+              <h3 className="text-base font-normal font-seasonmix mb-3 md:mb-6 uppercase tracking-[1.02px]">Company</h3>
               <ul className="space-y-2 md:space-y-3 [&_a]:text-[13px] md:[&_a]:text-sm">
                 <li><Link href="/" className="text-gray-300 text-sm tracking-[0.01em] hover:text-white transition-colors">Home</Link></li>
                 <li><Link href="/about" className="text-gray-300 text-sm tracking-[0.01em] hover:text-white transition-colors">About Us</Link></li>
@@ -101,7 +101,7 @@ const Footer = () => {
 
             {/* Column 3: Products Links */}
             <div className="lg:col-span-3 scroll-reveal [--reveal-delay:300ms]" data-footer-reveal>
-              <h3 className="text-base font-normal mb-3 md:mb-6 uppercase tracking-[0.04em]">Products</h3>
+              <h3 className="text-base font-normal font-seasonmix mb-3 md:mb-6 uppercase tracking-[1.02px]">Products</h3>
               <ul className="space-y-2 md:space-y-3 [&_a]:text-[13px] md:[&_a]:text-sm">
                 <li><Link href="/products" className="text-gray-300 text-sm tracking-[0.01em] hover:text-white transition-colors">Building Materials</Link></li>
                 <li><Link href="/products" className="text-gray-300 text-sm tracking-[0.01em] hover:text-white transition-colors">Cement & Concrete</Link></li>
@@ -113,7 +113,7 @@ const Footer = () => {
 
             {/* Column 4: Contact & Social */}
             <div className="lg:col-span-3 scroll-reveal [--reveal-delay:400ms]" data-footer-reveal>
-              <h3 className="text-base font-normal mb-3 md:mb-6 uppercase tracking-[0.04em]">Get in touch</h3>
+              <h3 className="text-base font-normal font-seasonmix mb-3 md:mb-6 uppercase tracking-[1.02px]">Get in touch</h3>
               <ul className="space-y-3 md:space-y-4 mb-5 md:mb-8">
                 <li className="flex items-start gap-3 text-gray-300 text-sm tracking-[0.01em]">
                   <MapPin className="mt-1 shrink-0" size={18} />

@@ -30,10 +30,10 @@ export default function ProjectsSection() {
           <p className="mb-3 text-xs font-medium uppercase leading-5 tracking-[0.18em] text-[#f97316]">
             Project Supplies
           </p>
-          <h2 className="mt-2 sm:mt-3 mb-4 text-[26px] sm:text-[32px] md:text-[40px] font-light leading-none tracking-[-0.010em] text-[#333333]">
+          <h2 className="mt-2 sm:mt-3 mb-4 text-[26px] sm:text-[32px] md:text-[40px] font-light font-seasonmix leading-8 md:leading-15.5 tracking-[1.02px] text-[#333333]">
             Workshops & Maintenance Departments
           </h2>
-          <p className="max-w-3xl leading-[1.7] text-gray-600 text-[14px] tracking-[0.01em] sm:text-[16px]">
+          <p className="max-w-3xl leading-[1.7] font-light text-gray-600 text-[14px] tracking-[0.01em] sm:text-[16px]">
             Our Project Supplies Division sets up complete workshops and furnishes
             maintenance departments with tools and accessories. We are a registered
             supplier to many hotels and resorts in Dubai, Abu Dhabi and Sharjah.
@@ -42,10 +42,10 @@ export default function ProjectsSection() {
 
         {/* Prestige Projects */}
         <div>
-          <h3 className="mb-4 text-[20px] sm:text-[24px] md:text-[28px] font-light leading-none tracking-[-0.010em] text-[#333333]">
+          <h3 className="mb-4 text-[20px] sm:text-[24px] md:text-[28px] font-light font-seasonmix leading-8 md:leading-15.5 tracking-[1.02px] text-[#333333]">
             Approved Supplier for Prestigious Projects
           </h3>
-          <p className="mb-6 max-w-3xl leading-[1.7] text-gray-600 text-[14px] tracking-[0.01em] sm:text-[16px]">
+          <p className="mb-6 max-w-3xl leading-[1.7] font-light text-gray-600 text-[14px] tracking-[0.01em] sm:text-[16px]">
             Bahrainwala has been an approved supplier for many prestigious projects
             all over the UAE, including:
           </p>
@@ -63,10 +63,10 @@ export default function ProjectsSection() {
 
         {/* Export Markets */}
         <div>
-          <h3 className="mb-4 text-[20px] sm:text-[24px] md:text-[28px] font-light leading-none tracking-[-0.010em] text-[#333333]">
+          <h3 className="mb-4 text-[20px] sm:text-[24px] md:text-[28px] font-light font-seasonmix leading-8 md:leading-15.5 tracking-[1.02px] text-[#333333]">
             Serving Clients Across the Region & Beyond
           </h3>
-          <p className="mb-6 max-w-3xl leading-[1.7] text-gray-600 text-[14px] tracking-[0.01em] sm:text-[16px]">
+          <p className="mb-6 max-w-3xl leading-[1.7] font-light text-gray-600 text-[14px] tracking-[0.01em] sm:text-[16px]">
             We serve local construction companies, industries, resorts and trade
             houses — with a strong market presence in:
           </p>
@@ -84,7 +84,7 @@ export default function ProjectsSection() {
 
         {/* Philosophy */}
         <div className="rounded-md border border-[#E5E0D8] bg-white px-6 py-8 sm:px-10 sm:py-10">
-          <p className="text-[16px] sm:text-[18px] md:text-[20px] font-light leading-[1.6] tracking-[0.01em] text-[#333333]">
+          <p className="text-[16px] sm:text-[18px] md:text-[20px] font-light font-seasonmix leading-8 md:leading-15.5 tracking-[1.02px] text-[#333333]">
             “The highest quality delivered in the fastest possible time at the lowest
             possible price is the key to our success. Our profit is hidden in our
             client’s progress and prosperity.”

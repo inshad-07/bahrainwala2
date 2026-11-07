@@ -38,11 +38,11 @@ export default function OverviewSection() {
           <p className={`mb-3 text-xs font-medium uppercase leading-5 tracking-[0.18em] text-[#333333] ${fadeUpClass}`} data-overview-reveal>
             About Us
           </p>
-          <h2 className={`mt-2 sm:mt-3 mb-5 text-balance text-[26px] font-light leading-none tracking-[-0.010em] text-[#333333] sm:text-[32px] md:text-[36px] lg:text-[40px] ${fadeUpClass}`} data-overview-reveal>
+          <h2 className={`mt-2 sm:mt-3 mb-5 text-balance text-[26px] font-light font-seasonmix leading-8 md:leading-15.5 tracking-[1.02px] text-[#333333] sm:text-[32px] md:text-[36px] lg:text-[40px] ${fadeUpClass}`} data-overview-reveal>
             Bahrainwala Building Materials Trading CO LLC
           </h2>
 
-          <div className="text-gray-600 text-[14px] leading-[1.7] tracking-[0.01em] space-y-5 mb-10 sm:text-[16px]">
+          <div className="text-gray-600 text-[14px] leading-[1.7] font-light tracking-[0.01em] space-y-5 mb-10 sm:text-[16px]">
             <p className={fadeUpClass} data-overview-reveal>
               Bahrainwala Building Materials Trading CO LLC is a trusted supplier of quality building materials, offering a wide range of products for construction and trading needs across the UAE.
             </p>

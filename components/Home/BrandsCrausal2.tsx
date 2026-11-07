@@ -199,16 +199,16 @@ export default function BrandsCrausal2() {
               <p className={`text-[10px] sm:text-xs font-normal uppercase leading-5 tracking-[0.18em] text-[#333333] ${fadeUpClass}`} data-brand-reveal>
                 Our Partners
               </p>
-              <h2 className={`mt-2 sm:mt-3 text-[26px] sm:text-[32px] md:text-[40px] font-light leading-none tracking-[-0.010em] text-[#333333] ${fadeUpClass} [--reveal-delay:100ms]`} data-brand-reveal>
+              <h2 className={`mt-2 sm:mt-3 text-[26px] sm:text-[32px] md:text-[40px] font-light font-seasonmix leading-8 md:leading-15.5 tracking-[1.02px] text-[#333333] ${fadeUpClass} [--reveal-delay:100ms]`} data-brand-reveal>
                 Brands We Deal With
               </h2>
-              <p className={`mt-2 sm:mt-3 max-w-md leading-[1.7] text-gray-600 text-[14px] tracking-[0.01em] sm:text-[16px] ${fadeUpClass} [--reveal-delay:200ms]`} data-brand-reveal>
-                Authorized dealer of K-PRIX, COMET, MITUTOYO, INSIZE and more.
+              <p className={`mt-2 sm:mt-3 max-w-md leading-[1.7] font-light text-gray-600 text-[14px] tracking-[0.01em] sm:text-[16px] ${fadeUpClass} [--reveal-delay:200ms]`} data-brand-reveal>
+                Trusted partnerships with leading industry brands worldwide.
               </p>
             </div>
             <Link
               href="/brands"
-              className={`mt-4 sm:mt-0 inline-flex items-center gap-2 rounded-full border border-[#E46231] bg-transparent px-5 py-2.5 sm:px-7 sm:py-3 text-[10px] sm:text-xs font-normal uppercase tracking-[0.08em] text-[#E46231] hover:bg-[#E46231] hover:text-white shrink-0 w-auto justify-start sm:justify-center transition-colors ${fadeUpClass} [--reveal-delay:300ms]`}
+              className={`mt-4 sm:mt-0 inline-flex items-center gap-2 rounded-full border border-[#333333] bg-[#333333] px-5 py-2.5 text-[10px] sm:text-xs font-normal uppercase tracking-[0.08em] text-white transition hover:bg-[#1a1a1a] shrink-0 w-auto justify-start sm:justify-center group ${fadeUpClass} [--reveal-delay:300ms]`}
               data-brand-reveal
             >
               View All
@@ -219,10 +219,10 @@ export default function BrandsCrausal2() {
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                className="h-3 w-3 sm:h-3.5 sm:w-3.5"
+                className="h-4 w-4 transition-transform group-hover:translate-x-1"
                 aria-hidden="true"
               >
-                <path d="M5 12h14M12 5l7 7-7 7" />
+                <path d="M5 12h14M16 8l4 4-4 4" />
               </svg>
             </Link>
           </div>

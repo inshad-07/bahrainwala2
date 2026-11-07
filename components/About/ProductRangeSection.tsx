@@ -23,10 +23,10 @@ export default function ProductRangeSection() {
           <p className="mb-3 text-xs font-medium uppercase leading-5 tracking-[0.18em] text-[#f97316]">
             What We Offer
           </p>
-          <h2 className="mt-2 sm:mt-3 text-[26px] sm:text-[32px] md:text-[40px] font-light leading-none tracking-[-0.010em] text-[#333333]">
+          <h2 className="mt-2 sm:mt-3 text-[26px] sm:text-[32px] md:text-[40px] font-light font-seasonmix leading-8 md:leading-15.5 tracking-[1.02px] text-[#333333]">
             Our Product Range
           </h2>
-          <p className="mt-3 sm:mt-4 max-w-2xl leading-[1.7] text-gray-600 text-[14px] tracking-[0.01em] sm:text-[16px]">
+          <p className="mt-3 sm:mt-4 max-w-2xl leading-[1.7] font-light text-gray-600 text-[14px] tracking-[0.01em] sm:text-[16px]">
             A wide range of items for use in CNC and lathe machines, workshops,
             construction sites and maintenance departments.
           </p>
