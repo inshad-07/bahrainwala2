@@ -93,10 +93,11 @@ export default function OverviewSection() {
           {/* Small Left Image */}
           <div className={`relative w-[45%] max-w-60 aspect-3/4 overflow-hidden rounded-tl-[100px] md:rounded-tl-[140px] ${fadeUpClass} [--reveal-delay:300ms]`} data-overview-reveal>
             <Image
-              src="/about/Bright-Electronics-Shop-with-Smiling-Shopkeeper.webp"
+              src="/about/Detailed-Shelved-Office-Storage-Room.webp"
               alt="Overview small representation"
               fill
               sizes="(max-width: 768px) 50vw, 25vw"
+              quality={95}
               className="object-cover"
             />
           </div>
@@ -108,6 +109,7 @@ export default function OverviewSection() {
               alt="Overview large room view"
               fill
               sizes="(max-width: 768px) 50vw, 33vw"
+              quality={95}
               className="object-cover"
               priority
             />
