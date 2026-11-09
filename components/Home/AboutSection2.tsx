@@ -40,26 +40,30 @@ export default function AboutSection2() {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-1 items-start ml-0 lg:ml-8">
             {/* First column - single vertical */}
             <div className="relative overflow-hidden rounded-lg shadow-sm flex-1 order-2 sm:order-1" style={{ height: '521px' }}>
-              <Image
-                src="/about/Detailed-Shelved-Office-Storage-Room.webp"
-                alt="Bahrainwala Building Materials Trading CO LLC"
-                fill
-                sizes="(max-width: 768px) 100vw, 50vw"
-                quality={95}
-                className="object-cover rounded-lg"
-              />
+              <div className="relative w-full h-full rounded-lg overflow-hidden">
+                <Image
+                  src="/about/Detailed-Shelved-Office-Storage-Room.webp"
+                  alt="Bahrainwala Building Materials Trading CO LLC"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  quality={95}
+                  className="object-cover"
+                />
+              </div>
             </div>
 
             {/* Second column - single vertical */}
             <div className="relative ml-0 mt-2 md:mt-0 sm:ml-2 rounded-lg shadow-sm p-2 flex items-start w-full sm:w-[350px] order-1 sm:order-2" style={{ height: '521px', border: '1.5px solid #E46231', borderRadius: '12px' }}>
-              <Image
-                src="/about/Bahrain-Wala-Hardware-Storefront-(1).webp"
-                alt="Bahrainwala Building Materials Trading CO LLC"
-                fill
-                sizes="(max-width: 768px) 100vw, 50vw"
-                quality={95}
-                className="object-cover rounded-lg"
-              />
+              <div className="relative w-full h-full rounded-lg overflow-hidden">
+                <Image
+                  src="/about/Bahrain-Wala-Hardware-Storefront-(1).webp"
+                  alt="Bahrainwala Building Materials Trading CO LLC"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  quality={95}
+                  className="object-cover"
+                />
+              </div>
             </div>
           </div>
         </div>
